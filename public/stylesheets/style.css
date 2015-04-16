@@ -1,0 +1,124 @@
+body {
+  padding: 40px 50px;
+  width: 100%;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+h1 {
+  color: #825c26;
+}
+
+h1:hover {
+  cursor: pointer;
+}
+
+a {
+  color: #00B7FF;
+  text-decoration: none;
+}
+
+a.button {
+	padding: 5px;
+	color: #825c26;
+	border-radius: 5px;
+	margin-top: 20px;
+  text-decoration: none;
+}
+
+a.button:hover {
+	background-color: #825c26;
+	color: #fff;
+	cursor: pointer;
+}
+
+#formUpload {
+
+}
+
+#uploadForm ul {
+}
+
+#uploadForm ul li {
+	list-style-type: none;
+}
+
+.formText {
+	outline: none;
+	background-color: #fff;
+	color: #444;
+	padding: 10px;
+	border: 0px solid #fff;
+	border-bottom: 1px solid #ccc;
+	margin: 0px 10px;
+}
+
+/*.fileUpload {
+	outline: none;
+	margin-left: 10px;
+
+}
+
+.fileUpload::-webkit-file-upload-button {
+  visibility: hidden;
+  content: "#fff";
+}
+
+.fileUpload::before {
+  content: 'Select some files';
+  display: inline-block;
+  background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
+  border: 1px solid #999;
+  border-radius: 3px;
+  padding: 5px 8px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  text-shadow: 1px 1px #fff;
+  font-weight: 700;
+  font-size: 10pt;
+}
+
+.fileUpload:active::before {
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+*/
+
+#dropzone {
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    width: 200px;
+    height: 150px;
+    line-height: 50px;
+    text-align: center;
+    font-weight: bold;
+}
+#dropzone:hover {
+    background-color: #ccc;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+    opacity: 1;
+}
+
+#uploadButton {
+  margin: 20px 0px 0px 15px;
+}
+
+#uploadContainer {
+  width: 100%;
+  border-top: 1px solid #ddd;
+}
+
+.dz-file-preview, .dz-preview {
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+}
+
+#uploadThumb {
+  width: inherit;
+  height: inherit;
+}

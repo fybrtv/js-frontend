@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  link(rel='stylesheet', href="/stylesheets/libs/jquery.fileupload.css")
+  script(src="/javascripts/libs/dropzone.js")
+  
+  h1(onclick="window.location='/'")= title
+  form#uploadForm(class="dropzone", action="http://localhost:8000/upload", method="POST")
+    input(type="text", placeholder="episode title", class="formText")
+    br
+    br
+    input(type="text", placeholder="channel", class="formText")
+    br
+    br
+    div#dropzone
+    div#uploadContainer
+      div
+        div.dz-message(data-dz-message)
+    br
+    br
+    a.button.blue(href="/upload", id="uploadButton") Submit
+  script.
+    console.log("working")
+    var myDropzone = new Dropzone("div#dropzone", { 
+      url: "http://localhost:8000/upload",
+      maxFilesize: 1024,
+      previewsContainer: "div#uploadContainer",
+      previewTemplate: "<div class=\"dz-preview dz-file-preview\"><div class=\"dz-details\"><div class=\"dz-filename\"><span data-dz-name></span></div><div class=\"dz-size\" data-dz-size></div><img data-dz-thumbnail class=\"uploadThumb\" />",
+      accept: function(file, done) {
+        console.log("Got file "+file.name); done();
+      }
+    });
