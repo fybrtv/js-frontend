@@ -5,11 +5,11 @@ block content
   script(src="/javascripts/libs/dropzone.js")
   
   h1(onclick="window.location='/'")= title
-  form#uploadForm(class="dropzone", action="http://localhost:8000/upload", method="POST")
-    input(type="text", placeholder="episode title", class="formText")
+  form#uploadForm(class="dropzone", action="http://localhost:8080/upload", method="POST")
+    input(type="text", name="episodeTitle", placeholder="episode title", class="formText")
     br
     br
-    input(type="text", placeholder="channel", class="formText")
+    input(type="text", name="channel", placeholder="channel", class="formText")
     br
     br
     div#dropzone
