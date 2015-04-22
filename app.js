@@ -10,6 +10,7 @@ var RedisStore = require('connect-redis')(session);
 
 var routes = require('./routes/index');
 var userRoutes = require('./routes/users');
+var seriesRoutes = require('./routes/series');
 
 var app = express();
 // view engine setup
@@ -40,6 +41,7 @@ app.post('/login',userRoutes.loginPOST)
 app.get('/createAccount', userRoutes.createAccount)
 app.post('/createAccount', userRoutes.createAccountPOST)
 app.get('/logout', userRoutes.logout);
+app.get('/series/:name', seriesRoutes.seriesGET)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
