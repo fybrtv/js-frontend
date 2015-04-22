@@ -12,6 +12,10 @@ html
       h1(onclick="window.location='/'")= title
       label#subTitle= subTitle
       a.headerButton(href="/upload", id="uploadLink") Upload
-      a.headerButton(href="/login") Login
+      if firstName === ""
+        a.headerButton(href="/login") Login
+      else
+        a.headerButton(href="/") #{firstName}
+        a.headerButton(href="/logout") Logout
     div#content
       block content

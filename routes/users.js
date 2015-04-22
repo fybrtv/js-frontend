@@ -1,13 +1,14 @@
 _title = "fybr";
 var request = require("request");
-
+_firstName = "";
+_type = "0";
 exports.createAccount = function(req, res) {
 	console.log('GET create acc')
-	res.render("create-account", {title: _title});
+	res.render("create-account", {title: _title, subTitle: "Create Account",type: _type,firstName: _firstName});
 }
 exports.login = function(req, res) {
     console.log("GET login");
-    res.render("login", {title: _title});
+    res.render("login", {title: _title, subTitle: "Login",type: _type,firstName: _firstName});
 }
 loginFunc = function(uname, pword, req, res){
 	console.log('login function called');
@@ -60,4 +61,13 @@ exports.createAccountPOST = function(req, res) {
 exports.loginPOST = function(req, res){
 	console.log('POST login');
 	loginFunc(req.body.username, req.body.password, req, res)
+}
+exports.logout = function(req, res){
+	//req.session.destroy();
+	console.log("this")
+	request.post({url: "http://127.0.0.1:5000/users/logout", formData: {token: req.session.token}}, function(error, response, body) {
+	  delete req.session;
+	  console.log(body);
+	  res.redirect('/');
+	});
 }

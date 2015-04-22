@@ -39,6 +39,7 @@ app.get('/login', userRoutes.login);
 app.post('/login',userRoutes.loginPOST)
 app.get('/createAccount', userRoutes.createAccount)
 app.post('/createAccount', userRoutes.createAccountPOST)
+app.get('/logout', userRoutes.logout);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
