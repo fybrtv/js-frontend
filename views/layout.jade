@@ -9,13 +9,15 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
     div#header
-      h1(onclick="window.location='/'")= title
-      label#subTitle= subTitle
-      a.headerButton(href="/upload", id="uploadLink") Upload
-      if loggedIn == true
-        a.headerButton(href="/") #{firstName}
-        a.headerButton(href="/logout") Logout    
-      else 
-        a.headerButton(href="/login") Login
-    div#content
+      div#inner
+        h1(onclick="window.location='/'", id="logo")= title
+        label#subTitle= subTitle
+        a.headerButton(href="/upload", id="uploadLink") Upload
+        if loggedIn == true
+          a.headerButton(href="/") #{firstName}
+          a.headerButton(href="/logout") Logout    
+        else 
+          a.headerButton(href="/login") Login
+    div#wrapper
+      
       block content

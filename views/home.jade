@@ -1,14 +1,27 @@
 extends layout
 
 block content
-  div#videoView
-    label= msg
-    div#left
-      div#channelTabs
-        ul 
-          li Comedy
-          li Drama
-          li Action
-    div#right
-      video#videoStream
+  div#content
+    div#videoView
+      p= msg
+      div#left
+        div#channelTabs
+          ul 
+            li Comedy
+            li Drama
+            li Action
+            li Animation
+            li Cats
+            li Music
+            li News
+            li Tutorials
+            li Vlogs
+            li Sci-Fi
+            li Horror
+      div#right
+        video#videoStream
+      div#comments
+        p Comments
+  
   div#videoInfo
+    h1 Video Info
