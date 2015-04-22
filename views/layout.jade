@@ -5,11 +5,13 @@ html
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js")
     script(src="/javascripts/main.js")
     link(rel='stylesheet', href='/stylesheets/libs/bootstrap.min.css')
+    link(href='http://fonts.googleapis.com/css?family=Open+Sans', rel='stylesheet',  type='text/css')
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
     div#header
       h1(onclick="window.location='/'")= title
-      a.button.blue(href="/upload", id="uploadLink") Upload
-      a.button.blue(href="/login", id="uploadLink") Login
+      label#subTitle= subTitle
+      a.headerButton(href="/upload", id="uploadLink") Upload
+      a.headerButton(href="/login") Login
     div#content
       block content
