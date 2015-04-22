@@ -3,39 +3,29 @@ extends layout
 block content
   
   style.
-    h1{
-      margin: auto;
-      text-align: center;
-      width: 500px;
-      margin-top: 300px;
-      font-size: 60px;
-    }
     #createAccountForm{
       margin: auto;
       text-align: center;
-      width: 500px;
     }
     .create-form-text{
-      width: 100%;
-      height: 100px;
-      font-size: 25px;
-      padding-left: 10px;
+      width: 300px;
+      font-size: 24px;
+      border-radius: 3px;
+      border: 1px solid #ccc;
+      padding: 5px;
+      outline: none;
     }
     #createButton{
-      width: 100%;
-      height: 100px;
-      font-size: 45px;
+      width: 300px;
+      height: 50px;
+      font-size: 24px;
       border-radius: 5px;
+      background-color: #fff;
+      border: 1px solid #ccc;
     }
-    #loginButton{
-      width: 100%;
-      height: 100px;
-      font-size: 30px;
-      border-radius: 5px;
-    }
-  h1(onclick="window.location='/'")= title
-  br
+  h1= subTitle
   form#createAccountForm(action="/createAccount", method="post")
+    p= error
     input(type="text", name="firstname", placeholder="First Name", class="create-form-text")
     br
     br
@@ -54,7 +44,7 @@ block content
     input(type="password", name="cpassword", placeholder="Confirm Password", class="create-form-text")
     br
     br
-    input(type="submit", class="button", name="commit", id="createButton", value="Create account")
+    input(type="submit", class="formButton", name="commit", id="createButton", value="Create account")
     br
     br
     a(class="button", id="loginButton" href="/login") Login

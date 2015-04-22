@@ -1,12 +1,18 @@
 _title = "fybr";
 _firstName = "";
 _type = "0";
-exports.homeGET = function(req, res) {
-	if(req.session.userID){
-		_firstName = req.session.firstName;
-		_type = req.session.type;
+_msg = ""
+exports.homeGET = function(req, res) {	
+	var loggedIn;
+
+	if (typeof req.session.token == "undefined") {
+		loggedIn = false;
+	} else {
+		loggedIn = true;
 	}
-	res.render("home", {title: _title, subTitle: "home",type: _type,firstName: _firstName});
+
+	if (typeof _msg == "undefined") _msg = "";
+	res.render("home", {title: _title, subTitle: "home", type: req.session.type || undefined, firstName: req.session.firstName || undefined, msg: _msg, loggedIn: loggedIn}); delete _msg;
 }
 exports.uploadGET = function(req, res) {
 	res.render("upload", {title: _title, subTitle: "upload"});

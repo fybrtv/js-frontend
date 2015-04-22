@@ -2,15 +2,23 @@ _title = "fybr";
 var request = require("request");
 _firstName = "";
 _type = "0";
+_msg = ""
+
 exports.createAccount = function(req, res) {
 	console.log('GET create acc')
-	res.render("create-account", {title: _title, subTitle: "Create Account",type: _type,firstName: _firstName});
+	if (typeof _msg == "undefined") _msg = "";
+	res.render("create-account", {title: _title, subTitle: "Create Account",type: _type,firstName: _firstName, error: _msg});
+	delete _msg;
 }
+
 exports.login = function(req, res) {
     console.log("GET login");
-    res.render("login", {title: _title, subTitle: "Login",type: _type,firstName: _firstName});
+    if (typeof _msg == "undefined") _msg = "";
+    res.render("login", {title: _title, subTitle: "Login",type: _type,firstName: _firstName, error: _msg});
+    delete _msg;
 }
-loginFunc = function(uname, pword, req, res){
+
+function loginFunc(uname, pword, req, res){
 	console.log('login function called');
 	request({
 		  uri: "http://127.0.0.1:5000/users/auth",
@@ -20,7 +28,7 @@ loginFunc = function(uname, pword, req, res){
 		    password: pword
 		  }
 		}, function(error, response, body) {
-		  if(!error){
+		  if(JSON.parse(response.body).success == "true"){
 		  	console.log('login return ', body);
 		  	req.session.firstName = (JSON.parse(body)).firstName;
 		  	req.session.lastName = (JSON.parse(body)).lastName;
@@ -30,6 +38,9 @@ loginFunc = function(uname, pword, req, res){
 		  	req.session.username = (JSON.parse(body)).username;
 		  	req.session.token = (JSON.parse(body)).token;
 		  	res.redirect('/');
+		  } else {
+		  	_msg = JSON.parse(response.body).message;
+		  	res.redirect("/login")
 		  }
 		});
 }
@@ -49,8 +60,11 @@ exports.createAccountPOST = function(req, res) {
 		  }
 		}, function(error, response, body) {
 		  console.log('create return ', body);
-		  if(!error){
+		  if(body.success == "true"){
 		  	loginFunc(req.body.username, req.body.password, req, res)
+		  } else {
+		  	_msg = JSON.parse(response.body).message;;
+		  	res.redirect("/createAccount")
 		  }
 		});
 	}
@@ -63,11 +77,21 @@ exports.loginPOST = function(req, res){
 	loginFunc(req.body.username, req.body.password, req, res)
 }
 exports.logout = function(req, res){
-	//req.session.destroy();
-	console.log("this")
-	request.post({url: "http://127.0.0.1:5000/users/logout", formData: {token: req.session.token}}, function(error, response, body) {
-	  delete req.session;
-	  console.log(body);
-	  res.redirect('/');
-	});
+	if (typeof req.session.token != "undefined") {
+		req.session.destroy();
+		console.log("Logged off user");
+		// console.log("logout: "+req.session.token)
+		// request.post({url: "http://127.0.0.1:5000/users/logout", form: {token: req.session.token}}, function(error, response, body) {
+		//   console.log("body: "+JSON.parse(body).success)
+		//   if (JSON.parse(body).success == "true") {
+		//   	req.session.destroy();
+		//   } else {
+		//   	_msg = "Logout Unsuccessful"
+		//   	req.session.destroy();
+		//   }
+		//   res.redirect('/');
+		// });
+	}
+	res.redirect('/');
+		
 }
