@@ -36,11 +36,22 @@ block content
   h1(onclick="window.location='/'")= title
   br
   form#createAccountForm(action="/createAccount", method="post")
+    input(type="text", name="firstname", placeholder="First Name", class="create-form-text")
+    br
+    br
+    input(type="text", name="lastname", placeholder="Last Name", class="create-form-text")
+    br
+    br
+    input(type="text", name="email", placeholder="Email", class="create-form-text")
+    br
+    br
     input(type="text", name="username", placeholder="Username", class="create-form-text")
     br
     br
     input(type="password", name="password", placeholder="Password", class="create-form-text")
     br
+    br
+    input(type="password", name="cpassword", placeholder="Confirm Password", class="create-form-text")
     br
     br
     input(type="submit", class="button", name="commit", id="createButton", value="Create account")
