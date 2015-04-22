@@ -1,0 +1,41 @@
+extends layout
+
+block content
+  
+  style.
+
+  h1(onclick="window.location='/'")= title
+  form#loginForm(class="dropzone", action="http://localhost:5000/login")
+    input(type="text", name="username", placeholder="username", class="login-form-text")
+    br
+    br
+    input(type="password", name="password", placeholder="password", class="login-form-text")
+    br
+    br
+    br
+    a(class="button", id="loginButton") Login
+
+  script.
+    console.log("working")
+    var myDropzone = new Dropzone("div#dropzone", { 
+      url: "http://localhost:8080/upload",
+      autoProcessQueue: false,
+      maxFilesize: 2048,
+      previewsContainer: "div#uploadContainer",
+      previewTemplate: "<div class=\"dz-preview dz-file-preview\"><div class=\"dz-details\"><div class=\"dz-filename\"><span data-dz-name></span></div><div class=\"dz-size\" data-dz-size></div><img data-dz-thumbnail class=\"uploadThumb\" />",
+      accept: function(file, done) {
+        console.log("Got file "+file.name); done();
+      },
+      init: function() {
+        var submitBtn = document.querySelector("#uploadButton");
+
+        d = this;
+        submitBtn.addEventListener("click", function(){
+          d.processQueue();
+        });
+
+        this.on("addedfile", function() {
+          console.log('file added');
+        })
+      }
+    });
