@@ -21,7 +21,8 @@ loginFunc = function(uname, pword, req, res){
 		}, function(error, response, body) {
 		  if(!error){
 		  	console.log('login return ', body);
-		  	req.session.token = body.token;
+		  	req.session.token = (JSON.parse(body)).token;
+		  	console.log('session token: ',req.session.token );
 		  	res.redirect('/');
 		  }
 		});
