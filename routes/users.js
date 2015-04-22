@@ -21,8 +21,13 @@ loginFunc = function(uname, pword, req, res){
 		}, function(error, response, body) {
 		  if(!error){
 		  	console.log('login return ', body);
+		  	req.session.firstName = (JSON.parse(body)).firstName;
+		  	req.session.lastName = (JSON.parse(body)).lastName;
+		  	req.session.email = (JSON.parse(body)).email;
+		  	req.session.userID = (JSON.parse(body)).userID;
+		  	req.session.type = (JSON.parse(body)).type;
+		  	req.session.username = (JSON.parse(body)).username;
 		  	req.session.token = (JSON.parse(body)).token;
-		  	console.log('session token: ',req.session.token );
 		  	res.redirect('/');
 		  }
 		});

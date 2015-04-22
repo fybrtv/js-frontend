@@ -4,9 +4,13 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var redis = require('redis');
 var session = require('express-session');
+var RedisStore = require('connect-redis')(session);
+
 var routes = require('./routes/index');
-var userRoutes = require('./routes/users')
+var userRoutes = require('./routes/users');
+
 var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -21,8 +25,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({ resave: true,
+                  store: new RedisStore({
+                    host:'127.0.0.1',
+                    port:6379,
+                    prefix: 'sess'
+                  }),
                   saveUninitialized: true,
                   secret: 'fybriseverything' }));
+
 app.get('/', routes.homeGET);
 app.get('/upload', routes.uploadGET);
 app.get('/login', userRoutes.login);
