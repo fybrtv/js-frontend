@@ -23,8 +23,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', routes.homeGET);
 app.get('/upload', routes.uploadGET);
-app.get('/login', userRoutes.loginPage);
-app.get('/createAccount', userRoutes.createAccountPage)
+app.get('/login', userRoutes.login);
+app.post('/login',userRoutes.loginPOST)
+app.get('/createAccount', userRoutes.createAccount)
+app.post('/createAccount', userRoutes/createAccountPOST)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
