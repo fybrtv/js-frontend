@@ -9,17 +9,19 @@ exports.login = function(req, res) {
     console.log("GET login");
     res.render("login", {title: _title});
 }
-loginFunc = function(uname, pword, res){
+loginFunc = function(uname, pword, req, res){
+	console.log('login function called');
 	request({
 		  uri: "http://127.0.0.1:5000/users/auth",
 		  method: "POST",
 		  form: {
-		    username: username,
+		    username: uname,
 		    password: pword
 		  }
 		}, function(error, response, body) {
 		  if(!error){
-		  	console.log(body);
+		  	console.log('login return ', body);
+		  	req.session.user = body;=
 		  	res.redirect('/');
 		  }
 		});
@@ -33,14 +35,15 @@ exports.createAccountPOST = function(req, res) {
 		  form: {
 		    username: req.body.username,
 		    password: req.body.password,
+		    passwordCheck: req.body.cpassword,
 		    firstName: req.body.firstname,
 		    lastName: req.body.lastName,
 		    email: req.body.email
 		  }
 		}, function(error, response, body) {
-		  console.log(body);
+		  console.log('create return ', body);
 		  if(!error){
-		  	loginFunc(req.body.username, req.body.password, res)
+		  	loginFunc(req.body.username, req.body.password, req, res)
 		  }
 		});
 	}
@@ -50,5 +53,5 @@ exports.createAccountPOST = function(req, res) {
 }
 exports.loginPOST = function(req, res){
 	console.log('POST login');
-	loginFunc(req.body.username, req.body.password, res)
+	loginFunc(req.body.username, req.body.password, req, res)
 }
