@@ -1,3 +1,6 @@
+/*
+  Purple= #742365
+*/
 @font-face {
     font-family: acid;
     src: url(../fonts/acid.otf);
@@ -14,15 +17,49 @@ body {
   width: 100%;
   border-bottom: 1px solid #ccc;
   padding: 5px 150px;
-  position:relative;
+  position: relative;
 }
 
 #header > * {
   display: inline;
 }
 
-#content {
-  padding: 20px 150px;
+#content > * {
+  padding: 40px 150px;
+}
+
+#left {
+  height: 600px;
+  float:left;
+}
+
+#left ul {
+  list-style-type: none;
+  background-color: #fff;
+}
+
+#left #channelTabs ul li {
+  padding: 5px;
+  padding-right: 20px;
+  color: #656565;
+  font-size: 24px; 
+}
+
+#left #channelTabs ul li:hover {
+  color: #742365;
+  cursor: pointer;
+  border-top: 3px solid #742365;
+  border-bottom: 3px solid #742365;
+  -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.4s linear;
+    -ms-transition: all 0.4s linear;
+    -o-transition: all 0.4s linear;
+    transition: all 0.1s ease-in-out;
+}
+
+#right {
+  height: 600px;
+  float:left;
 }
 
 h1 {
@@ -37,11 +74,29 @@ h1:hover {
 
 #subTitle {
   margin-left: 20px;
-  position:absolute;
+  position: absolute;
   margin-top: 10px;
   color: #858585;
   font-family: 'Open Sans';
   font-size: 14px
+}
+
+#videoView {
+  float:left;
+  width: 100%;
+}
+
+#videoInfo {
+  float:left;
+  width: 100%;
+  background-color: #fff;
+  border-top: 1px solid #742365;
+}
+
+#videoStream {
+  width: 800px;
+  height: 600px;
+  background-color: black;
 }
 
 a {
