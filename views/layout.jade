@@ -7,4 +7,9 @@ html
     link(rel='stylesheet', href='/stylesheets/libs/bootstrap.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    block content
+    div#header
+      h1(onclick="window.location='/'")= title
+      a.button.blue(href="/upload", id="uploadLink") Upload
+      a.button.blue(href="/login", id="uploadLink") Login
+    div#content
+      block content

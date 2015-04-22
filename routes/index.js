@@ -1,7 +1,7 @@
 _title = "fybr";
 
 exports.homeGET = function(req, res) {
-	res.render("index", {title: _title});
+	res.render("home", {title: _title});
 }
 
 exports.uploadGET = function(req, res) {

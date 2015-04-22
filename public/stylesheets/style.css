@@ -1,11 +1,33 @@
+@font-face {
+    font-family: acid;
+    src: url(../fonts/acid.otf);
+    font-weight: bold;
+}
+
 body {
-  padding: 40px 50px;
   width: 100%;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+#header {
+
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+  padding: 5px 150px;
+}
+
+#header > * {
+  display: inline;
+}
+
+#content {
+  padding: 20px 150px;
+}
+
 h1 {
-  color: #825c26;
+  font-size: 32px;
+  font-family: acid;
+  color: #742365;
 }
 
 h1:hover {
@@ -19,16 +41,19 @@ a {
 
 a.button {
 	padding: 5px;
-	color: #825c26;
-	border-radius: 5px;
-	margin-top: 20px;
+	color: #742365;
   text-decoration: none;
+
 }
 
 a.button:hover {
-	background-color: #825c26;
-	color: #fff;
+	border-bottom: 2px solid #742365;
 	cursor: pointer;
+  -webkit-transition: all 0.1s linear;
+    -moz-transition: all 0.1s ease-out;
+    -ms-transition: all 0.1s ease-out;
+    -o-transition: all 0.1s ease-out;
+    transition: all 0.1s linear;
 }
 
 #formUpload {
@@ -109,7 +134,6 @@ a.button:hover {
 
 #uploadContainer {
   width: 100%;
-  border-top: 1px solid #ddd;
 }
 
 .dz-file-preview, .dz-preview {
@@ -121,4 +145,9 @@ a.button:hover {
 #uploadThumb {
   width: inherit;
   height: inherit;
+}
+
+#uploadLink {
+  margin-top: 5px;
+  float:right;
 }

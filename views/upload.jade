@@ -3,8 +3,6 @@ extends layout
 block content
   link(rel='stylesheet', href="/stylesheets/libs/jquery.fileupload.css")
   script(src="/javascripts/libs/dropzone.js")
-  
-  h1(onclick="window.location='/'")= title
   form#uploadForm(class="dropzone", action="http://localhost:8080/upload")
     input(type="text", name="episodeTitle", placeholder="episode title", class="formText")
     br
