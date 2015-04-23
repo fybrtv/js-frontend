@@ -260,9 +260,19 @@ a.formButton:hover {
 }
 
 #uploadButton {
-  margin: 20px 0px 0px 15px;
+  margin: 20px 0px 0px 0px;
+  font-size: 16px;
+  border-radius: 5px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  outline: none;
+
 }
 
+#uploadButton:hover {
+  background-color: #742365;
+  color: #fff;
+}
 #uploadContainer {
   width: 100%;
 }

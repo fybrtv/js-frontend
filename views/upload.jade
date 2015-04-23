@@ -3,23 +3,29 @@ extends layout
 block content
   link(rel='stylesheet', href="/stylesheets/libs/jquery.fileupload.css")
   script(src="/javascripts/libs/dropzone.js")
-  form#uploadForm(class="dropzone", action="http://localhost:8080/upload")
-    input(type="text", name="episodeTitle", placeholder="episode title", class="formText")
+  form#uploadForm(class="dropzone", action="http://localhost:8080/upload", method="POST")
+    input(type="text", name="episodeName", id="episodeName", placeholder="episode title", class="formText")
     br
     br
-    input(type="text", name="channel", placeholder="channel", class="formText")
+    input(type="hidden", name="seriesId", value="daw88w9ad98d89", id="seriesId", class="formText")
+    select#uploadSelect
+      option(value="daw88w9ad98d89") Escape from Drexel
+      option(value="ado09dwa9wad0d") Brainstorn Adventures
+      option(value="km32mk32k3k3jh") Magic Storm Nation
     br
     br
     div#dropzone
     div#uploadContainer
       div
         div.dz-message(data-dz-message)
-    br
-    br
-    a(class="formButton", id="uploadButton") Submit
+    input(class="formButton", type="button", id="uploadButton", value="Upload")
 
   script.
-    console.log("working")
+    $("#uploadSelect").on("change", function(){
+      var optionSelected = $(this).find("option:selected");
+      var valueSelected  = optionSelected.val();
+      $("#seriesId").val(valueSelected);
+    });
     var myDropzone = new Dropzone("div#dropzone", { 
       url: "http://localhost:8080/upload",
       autoProcessQueue: false,
@@ -34,8 +40,21 @@ block content
 
         d = this;
         submitBtn.addEventListener("click", function(){
-          d.processQueue();
+          $.ajax({
+            method: "POST",
+            url: "http://localhost:8080/upload",
+            data: {seriesId: $("#seriesId").val(), episodeName: $("#episodeName").val()},
+            failure: function(response){
+              alert("Submit Failed")
+            },
+            success: function(response){
+              console.log("Submitted")
+              d.processQueue();
+            }
+          })
+            
         });
+          
 
         this.on("addedfile", function() {
           console.log('file added');
