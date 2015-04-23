@@ -25,6 +25,10 @@ block content
       outline: none;
     }
   h1= subTitle
+  if type == 1
+    a.headerButton(href="/upload", id="uploadLink") Upload
+  else
+    a.headerButton(href="/becomeCreator", id="becomeCreatorLink") Become creator!
   form#editAccountForm(action="/editAccount", method="post")
     p= error
     input(type="text", name="firstname", value="#{firstName}", class="create-form-text")

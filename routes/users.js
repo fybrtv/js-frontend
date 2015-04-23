@@ -6,10 +6,36 @@ _msg = ""
 exports.profileDashboard = function(req, res){
 	console.log('GET profile dashboard');
 	if (typeof _msg == "undefined") _msg = "";
-	res.render("profile-dashboard", {title: _title, subTitle: "Edit Profile",type: req.session.type,firstName: req.session.firstName, error: _msg})
+	res.render("profile-dashboard", {title: _title, subTitle: "Edit Profile",type: req.session.type,firstName: req.session.firstName, lastName: req.session.lastName, email: req.session.email, username: req.session.username, error: _msg})
+	delete _msg;
 }
 exports.profileDashboardPOST = function(req, res){
 	console.log('POST profile dashboard');
+	if(req.body.password === req.body.cpassword){
+		request({
+		  uri: ("http://127.0.0.1:5000/users/" + req.session.userID),
+		  method: "POST",
+		  form: {
+		    username: req.body.username || req.session.username,
+		    password: req.body.password || req.session.password,
+		    passwordCheck: req.body.cpassword || req.session.cpassword,
+		    firstName: req.body.firstname || req.session.firstName,
+		    lastName: req.body.lastName || req.session.lastName,
+		    email: req.body.email || req.session.email
+		  }
+		}, function(error, response, body) {
+		  console.log('edit return ', body);
+		  if(body.success == "true"){
+		  	loginFunc(req.body.username, req.body.password, req, res)
+		  } else {
+		  	_msg = JSON.parse(response.body).message;;
+		  	res.redirect("/editAccount")
+		  }
+		});
+	}
+	else{
+		res.redirect('/editAccount')
+	}
 }
 exports.createAccount = function(req, res) {
 	console.log('GET create acc')
