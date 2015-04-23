@@ -1,9 +1,14 @@
 _title = "fybr";
 var request = require("request");
-_firstName = "";
-_type = "0";
 _msg = ""
 
+
+exports.profileDashboard = function(req, res){
+	console.log('GET profile dashboard');
+}
+exports.profileDashboardPOST = function(req, res){
+	console.log('POST profile dashboard');
+}
 exports.createAccount = function(req, res) {
 	console.log('GET create acc')
 	if (typeof _msg == "undefined") _msg = "";
