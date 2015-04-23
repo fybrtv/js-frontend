@@ -26,15 +26,19 @@ block content
     }
   h1= subTitle
   if type == 1
-    a.headerButton(href="/upload", id="uploadLink") Upload
+    a.button(id="uploadButton" href="/upload") Upload
+    br
+    br
+    br
+    a.button(href="/resignCreator", id="resignCreatorLink") Resign as creator
   else
-    a.headerButton(href="/becomeCreator", id="becomeCreatorLink") Become creator!
-  form#editAccountForm(action="/editAccount", method="post")
+    a.button(href="/becomeCreator", id="becomeCreatorLink") Become creator!
+  form#editAccountForm(action="/profileDashboard", method="post")
     p= error
-    input(type="text", name="firstname", value="#{firstName}", class="create-form-text")
+    input(type="text", name="firstName", value="#{firstName}", class="create-form-text")
     br
     br
-    input(type="text", name="lastname", value="#{lastName}", class="create-form-text")
+    input(type="text", name="lastName", value="#{lastName}", class="create-form-text")
     br
     br
     input(type="text", name="email", value="#{email}", class="create-form-text")

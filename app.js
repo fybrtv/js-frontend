@@ -44,6 +44,9 @@ app.get('/logout', userRoutes.logout);
 app.get('/series/:name', seriesRoutes.seriesGET)
 app.get('/profileDashboard', userRoutes.profileDashboard);
 app.post('/profileDashboard',userRoutes.profileDashboardPOST);
+app.get('/becomeCreator',userRoutes.becomeCreator);
+app.get('/resignCreator',userRoutes.resignCreator);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
