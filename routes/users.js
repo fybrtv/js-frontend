@@ -5,6 +5,8 @@ _msg = ""
 
 exports.profileDashboard = function(req, res){
 	console.log('GET profile dashboard');
+	if (typeof _msg == "undefined") _msg = "";
+	res.render("profile-dashboard", {title: _title, subTitle: "Edit Profile",type: req.session.type,firstName: req.session.firstName, error: _msg})
 }
 exports.profileDashboardPOST = function(req, res){
 	console.log('POST profile dashboard');
@@ -12,14 +14,14 @@ exports.profileDashboardPOST = function(req, res){
 exports.createAccount = function(req, res) {
 	console.log('GET create acc')
 	if (typeof _msg == "undefined") _msg = "";
-	res.render("create-account", {title: _title, subTitle: "Create Account",type: _type,firstName: _firstName, error: _msg});
+	res.render("create-account", {title: _title, subTitle: "Create Account",type: req.session.type,firstName: req.session.firstName, error: _msg});
 	delete _msg;
 }
 
 exports.login = function(req, res) {
     console.log("GET login");
     if (typeof _msg == "undefined") _msg = "";
-    res.render("login", {title: _title, subTitle: "Login",type: _type,firstName: _firstName, error: _msg});
+    res.render("login", {title: _title, subTitle: "Login",type: req.session.type,firstName: req.session.firstName, error: _msg});
     delete _msg;
 }
 
