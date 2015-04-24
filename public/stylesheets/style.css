@@ -205,7 +205,6 @@ a.formButton:hover {
 	padding: 10px;
 	border: 0px solid #fff;
 	border-bottom: 1px solid #ccc;
-	margin: 0px 10px;
 }
 
 /*.fileUpload {
@@ -241,15 +240,16 @@ a.formButton:hover {
 */
 
 #dropzone {
+  margin-bottom: 10px;
   margin-left: -10px;
   background-size: 100% 100%;    
   width: 400px;
-    height: 280px;
-    background: url(../images/dropzone.png) no-repeat;
-    font-weight: bold;
-    opacity: .5;
-
+  height: 280px;
+  background: url(../images/dropzone.png) no-repeat;
+  font-weight: bold;
+  opacity: .5;
 }
+
 #dropzone:hover {
     -webkit-transition: all 0.5s ease-in-out;
     -moz-transition: all 0.5s ease-in-out;
@@ -266,7 +266,6 @@ a.formButton:hover {
   background-color: #fff;
   border: 1px solid #ccc;
   outline: none;
-
 }
 
 #uploadButton:hover {
@@ -279,8 +278,10 @@ a.formButton:hover {
 
 .dz-file-preview, .dz-preview {
   display: inline-block;
-  width: 150px;
-  height: 150px;
+  max-width: 150px;
+  max-height: 150px;
+  border: 1px solid #ccc;
+  padding: 5px;
 }
 
 #uploadThumb {
