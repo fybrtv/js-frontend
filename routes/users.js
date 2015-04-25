@@ -14,7 +14,8 @@ exports.profileDashboard = function(req, res){
 	}
 	if (loggedIn){
 		if (typeof _msg == "undefined") _msg = "";
-		res.render("profile-dashboard", {title: _title, subTitle: "Edit Profile",type: req.session.type,firstName: req.session.firstName, lastName: req.session.lastName, email: req.session.email, username: req.session.username, loggedIn: true, error: _msg})
+		console.log('tpye: ', req.session.typeOfAccount);
+		res.render("profile-dashboard", {title: _title, subTitle: "Edit Profile",typeOfAccount: req.session.typeOfAccount,firstName: req.session.firstName, lastName: req.session.lastName, email: req.session.email, username: req.session.username, loggedIn: true, error: _msg})
 		delete _msg;
 	}
 	else{
@@ -40,7 +41,7 @@ exports.resignCreator = function(req, res){
 			}, function(error, response, body) {
 			  console.log('edit return ', body);
 			  if(JSON.parse(body).success == "true"){
-			  	req.session.type = 0;
+			  	req.session.typeOfAccount = 0;
 			  	res.redirect("/profileDashboard")
 			  } else {
 			  	_msg = JSON.parse(response.body).message;;
@@ -71,7 +72,7 @@ exports.becomeCreator = function(req, res){
 			}, function(error, response, body) {
 			  console.log('edit return ', body);
 			  if(JSON.parse(body).success === "true"){
-			  	req.session.type = 1;
+			  	req.session.typeOfAccount = 1;
 			  	res.redirect("/profileDashboard")
 			  } else {
 			  	_msg = JSON.parse(response.body).message;
@@ -135,7 +136,7 @@ exports.createAccount = function(req, res) {
 	}
 	if(!loggedIn){
 		if (typeof _msg == "undefined") _msg = "";
-		res.render("create-account", {title: _title, subTitle: "Create Account",type: req.session.type,firstName: req.session.firstName, error: _msg});
+		res.render("create-account", {title: _title, subTitle: "Create Account",type: req.session.typeOfAccount,firstName: req.session.firstName, error: _msg});
 		delete _msg;
 	}
 	else{
@@ -154,7 +155,7 @@ exports.login = function(req, res) {
 	}
 	if(!loggedIn){
 	    if (typeof _msg == "undefined") _msg = "";
-	    res.render("login", {title: _title, subTitle: "Login",type: req.session.type,firstName: req.session.firstName, error: _msg});
+	    res.render("login", {title: _title, subTitle: "Login",type: req.session.typeOfAccount,firstName: req.session.firstName, error: _msg});
 	    delete _msg;
 	}
 	else{
@@ -178,7 +179,7 @@ function loginFunc(uname, pword, req, res){
 		  	req.session.lastName = (JSON.parse(body)).lastName;
 		  	req.session.email = (JSON.parse(body)).email;
 		  	req.session.userID = (JSON.parse(body)).userID;
-		  	req.session.type = (JSON.parse(body)).type;
+		  	req.session.typeOfAccount = (JSON.parse(body)).typeOfAccount;
 		  	req.session.username = (JSON.parse(body)).username;
 		  	req.session.token = (JSON.parse(body)).token;
 		  	res.redirect('/');
