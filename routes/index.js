@@ -24,12 +24,13 @@ exports.uploadGET = function(req, res) {
 		} 
 	}
 
-	request.get("/series/userId/"+req.session.userID, function(err, docs) {
+	request.get("/series/userId/"+req.session.userID, function(err, data) {
 		if (err) {
 			console.log(err);
 			res.redirect("/");
 		} else {
-			res.render("upload", {title: _title, subTitle: "upload", loggedIn: loggedIn, firstName: req.session.firstName, userSeries: docs});
+			var seriesDocs = JSON.parse(data).document;
+			res.render("upload", {title: _title, subTitle: "upload", loggedIn: loggedIn, firstName: req.session.firstName, userSeries: seriesDocs});
 		}
 	});
 }
