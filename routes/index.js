@@ -1,3 +1,4 @@
+var request = require("request");
 _title = "fybr";
 _firstName = "";
 _type = "0";
@@ -38,15 +39,20 @@ exports.homeGET = function(req, res) {
 exports.uploadGET = function(req, res) {
     var loggedIn = true;
 
-    if (typeof req.session != "undefined") {
-        if (typeof req.session.token == "undefined") {
-            loggedIn = false;
-        }
-    }
-    res.render("upload", {
-        title: _title,
-        subTitle: "upload",
-        loggedIn: loggedIn,
-        firstName: req.session.firstName
-    });
+
+	if (typeof req.session != "undefined") {
+		if (typeof req.session.token == "undefined") {
+			loggedIn = false;
+		} 
+	}
+
+	request.get("/series/userId/"+req.session.userID, function(err, data) {
+		if (err) {
+			console.log(err);
+			res.redirect("/");
+		} else {
+			var seriesDocs = JSON.parse(data).document;
+			res.render("upload", {title: _title, subTitle: "upload", loggedIn: loggedIn, firstName: req.session.firstName, userSeries: seriesDocs});
+		}
+	});
 }
