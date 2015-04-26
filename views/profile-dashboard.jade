@@ -24,6 +24,10 @@ block content
       border: 1px solid #ccc;
       outline: none;
     }
+    #series-form-text{
+      width: 200px;
+      height: 20px;
+    }
   h1= subTitle
   if typeOfAccount == 1
     a.button(id="uploadButton" href="/upload") Upload
@@ -31,6 +35,24 @@ block content
     br
     br
     a.button(href="/resignCreator", id="resignCreatorLink") Resign as creator
+    br
+    br
+    br
+    <h4>Create a new Series</h4>
+    form#newSeriesForm(action="/newSeries", method="post")
+      p= error
+      input(type="text", name="seriesName", id="episodeName", class="formText", placeholder="Series Name")
+      br
+      br
+      input(type="hidden", name="channelId", value="", id="channelId", class="seriesText")
+      select#newSeriesSelect
+        each channel in channels
+           option(value="#{channel._id}")= channel.channelName
+      br
+      br
+      input(type="submit", class="formButton", name="commit", id="editButton", value="Create new series")
+      br
+      br
   else
     a.button(href="/becomeCreator", id="becomeCreatorLink") Become creator!
   form#editAccountForm(action="/profileDashboard", method="post")
@@ -57,4 +79,8 @@ block content
     br
     br
   script.
+    $('#channelId').val($('#newSeriesSelect').val());
+    $('#newSeriesSelect').change(function(){
+      $('#channelId').val($('#newSeriesSelect').val());
+    })
     console.log("edit profile form running")
