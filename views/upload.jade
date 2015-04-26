@@ -11,7 +11,7 @@ block content
     input(type="hidden", name="seriesId", value="", id="seriesId", class="formText")
     select#uploadSelect
       each series in userSeries
-         option(value="#{series.seriesId}")= series.title
+         option(value="#{series._id}")= series.title
      
     br
     br
@@ -23,6 +23,7 @@ block content
 
   script.
     $("#seriesId").val($("#uploadSelect").find("option:selected").val())
+
     $("#uploadSelect").on("change", function(){
       var optionSelected = $(this).find("option:selected");
       var valueSelected  = optionSelected.val();
@@ -38,6 +39,7 @@ block content
         console.log("Got file "+file.name); done();
       },
       sending: function(file, xhr, formData) {
+          console.log($("#seriesId").val())
           formData.append("seriesId", $("#seriesId").val());
           formData.append("episodeName", $("#episodeName").val());
       },

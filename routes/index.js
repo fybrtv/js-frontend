@@ -46,12 +46,12 @@ exports.uploadGET = function(req, res) {
 		} 
 	}
 
-	request.get("/series/userId/"+req.session.userID, function(err, data) {
+	request.get("http://localhost:5000/series/userId/"+req.session.userID, function(err, data) {
 		if (err) {
 			console.log(err);
 			res.redirect("/");
 		} else {
-			var seriesDocs = JSON.parse(data).document;
+			var seriesDocs = JSON.parse(data.body).document;
 			res.render("upload", {title: _title, subTitle: "upload", loggedIn: loggedIn, firstName: req.session.firstName, userSeries: seriesDocs});
 		}
 	});
