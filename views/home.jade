@@ -7,17 +7,8 @@ block content
       div#left
         div#channelTabs
           ul 
-            li Comedy
-            li Drama
-            li Action
-            li Animation
-            li Cats
-            li Music
-            li News
-            li Tutorials
-            li Vlogs
-            li Sci-Fi
-            li Horror
+            each channel in channels
+              li= channel.channelName
       div#right
         video#videoStream
       div#comments
