@@ -18,6 +18,7 @@ exports.homeGET = function(req, res) {
                 }
             }
             if (typeof _msg == "undefined") _msg = "";
+            console.log(body)
             console.log('channels', body.document);
             res.render("home", {
                 title: _title,

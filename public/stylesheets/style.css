@@ -98,7 +98,7 @@ body {
   height: 400px;
   float:left;
   background-color: #fff;
-  min-width: 275px;
+  width: 225px;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
   border-top: 1px solid #742365;
