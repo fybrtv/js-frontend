@@ -11,7 +11,7 @@ exports.seriesGET = function(req, res) {
 				res.render("series", {title: _title, subTitle: "series", sname: body.name});
 			} else {
 				_msg = "Server malfunction";
-				res.redirect('/')
+				res.redirect('/');
 			}
 
 	});

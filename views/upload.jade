@@ -8,11 +8,11 @@ block content
     input(type="text", required="true", name="episodeName", id="episodeName", placeholder="episode title", class="formText")
     br
     br
-    input(type="hidden", name="seriesId", value="55303fbc57bdcee45f26eb0c", id="seriesId", class="formText")
+    input(type="hidden", name="seriesId", value="", id="seriesId", class="formText")
     select#uploadSelect
-      option(value="55303fbc57bdcee45f26eb0c") Escape from Drexel
-      option(value="55303fbc57bdcee45f26eb0c") Brainstorn Adventures
-      option(value="55303fbc57bdcee45f26eb0c") Magic Storm Nation
+      each series in userSeries
+         option(value="#{series.seriesId}")= series.title
+     
     br
     br
     div#dropzone
@@ -22,6 +22,7 @@ block content
     input(class="formButton", type="button", id="uploadButton", value="Upload")
 
   script.
+    $("#seriesId").val($("#uploadSelect").find("option:selected").val())
     $("#uploadSelect").on("change", function(){
       var optionSelected = $(this).find("option:selected");
       var valueSelected  = optionSelected.val();

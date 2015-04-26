@@ -1,7 +1,9 @@
+var request = require("request");
 _title = "fybr";
 _firstName = "";
 _type = "0";
 _msg = ""
+
 exports.homeGET = function(req, res) {	
 	var loggedIn = true;
 
@@ -21,5 +23,13 @@ exports.uploadGET = function(req, res) {
 			loggedIn = false;
 		} 
 	}
-	res.render("upload", {title: _title, subTitle: "upload", loggedIn: loggedIn, firstName: req.session.firstName});
+
+	request.get("/series/userId/"+req.session.userID, function(err, docs) {
+		if (err) {
+			console.log(err);
+			res.redirect("/");
+		} else {
+			res.render("upload", {title: _title, subTitle: "upload", loggedIn: loggedIn, firstName: req.session.firstName, userSeries: docs});
+		}
+	});
 }
