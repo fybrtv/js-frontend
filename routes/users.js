@@ -56,7 +56,7 @@ exports.newSeries = function(req, res){
             form: {
                 title: req.body.seriesName,
                 userId: req.session.userID,
-                score: 0,
+                score: 200,
                 channelId: req.body.channelId
             }
         }, function(error, response, body) {
