@@ -31,35 +31,54 @@ exports.homeGET = function(req, res) {
 
             request.get("http://localhost:5000/timelines/"+currentChannelId, function(err, response1, body1) {
                 if (err) {
-                    console.log(response1)
-                    err.status = response1.status;
+                    console.log(err);
+                    err.status = 404;
                     res.render("error", {error: err});
                 } else {
-                    var data = JSON.parse(body)
-                    var videoInfo = {
-                        ts_index: data.ts_index,
-                        tl_index: data.tl_index,
-                        fileId: data.fileId,
-                        start: data.start
-                    }
-                    res.render("home", {
-                        title: _title,
-                        subTitle: "home",
-                        type: req.session.type || undefined,
-                        firstName: req.session.firstName || undefined,
-                        msg: _msg || null,
-                        channels: JSON.parse(body).document,
-                        loggedIn: loggedIn,
-                        currentChannel: currentChannel,
-                        videoInfo: videoInfo
-                    }, function() {
-                        delete _msg;
-                    }); 
+                    console.log("No err;");
+                    var data = JSON.parse(body1);
 
+                    var renderData;
+
+                    if (typeof data.fileId == "undefined") {
+                        console.log("No timeline found")
+                        renderData = {
+                            title: _title,
+                            subTitle: "home",
+                            type: req.session.type || undefined,
+                            firstName: req.session.firstName || undefined,
+                            msg: "Could not find videos at this time. Try again later...",
+                            channels: JSON.parse(body).document,
+                            loggedIn: loggedIn
+                        }
+                    } else {
+                        console.log("timeline found")
+
+                        var videoInfo = {
+                            ts_index: data.ts_index,
+                            tl_index: data.tl_index,
+                            fileId: data.fileId,
+                            start: data.start
+                        };
+                        renderData = {
+                            title: _title,
+                            subTitle: "home",
+                            type: req.session.type || undefined,
+                            firstName: req.session.firstName || undefined,
+                            msg: _msg || null,
+                            channels: JSON.parse(body).document,
+                            loggedIn: loggedIn,
+                            currentChannel: currentChannel,
+                            videoInfo: videoInfo
+                        }
+                    }
+
+                    console.log(renderData)
+                    res.render("home", renderData); 
+                    delete _msg
                 }   
             })
             
-           
         } else {
             _msg = "Server malfunction";
             res.render("error", {error: error});
