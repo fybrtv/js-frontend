@@ -8,7 +8,8 @@ block content
         div#channelTabs
           ul 
             each channel in channels
-              li= channel.channelName
+              li
+                a(href="/?ch=#{channel.channelName}")= channel.channelName
       div#right
         video#videoStream
       div#comments
