@@ -1,6 +1,7 @@
 extends layout
 
 block content
+  script(src="/javascripts/libs/dash.all.js")
   div#content
     div#videoView(style="text-align: center;")
       p(style=" color: #fff; font-size: 18px; font-family: bold")= msg
@@ -14,6 +15,14 @@ block content
         video#videoStream
       div#comments
         p Comments
-  
+  script.
+    /*(function(){
+        var url = "fileId.mpd"; //link to mpd
+        var context = new Dash.di.DashContext();
+        var player = new MediaPlayer(context);
+        player.startup();
+        player.attachView(document.querySelector("#videoStream"));
+        player.attachSource(url);
+    })();*/
   div#videoInfo
     h1 Video Info
