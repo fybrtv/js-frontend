@@ -15,6 +15,7 @@ block content
         video#videoStream
       div#comments
         p Comments
+        p= videoInfo.fileId
   script.
     var data =  !{"#{videoInfo.fileId || ''}"};
     console.log(data);
