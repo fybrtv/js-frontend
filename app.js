@@ -14,6 +14,7 @@ var seriesRoutes = require('./routes/series');
 
 var app = express();
 // view engine setup
+app.use(express.static('uploads'));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.set('port', 3000);

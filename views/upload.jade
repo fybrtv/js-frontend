@@ -58,7 +58,9 @@ block content
           } else if (d.getQueuedFiles().length < 1) {
             message("Please upload at least (1) file")
           } else {
+          console.log('d',d);
             d.processQueue(); 
+            //window.location.replace(window.location.origin+"/")
           }  
         });
           

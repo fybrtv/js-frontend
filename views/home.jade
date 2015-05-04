@@ -15,19 +15,18 @@ block content
         video#videoStream
       div#comments
         p Comments
-        p= videoInfo.fileId
   script.
-    var data =  !{"#{videoInfo.fileId || ''}"};
-    console.log(data);
-    
-    
-    /*(function(){
-        var url = "fileId.mpd"; //link to mpd
+
+    (function(){
+        var url = "http://localhost:8080/uploads/55471139448afa0000000001_dash.mpd"; //link to mpd
         var context = new Dash.di.DashContext();
         var player = new MediaPlayer(context);
         player.startup();
         player.attachView(document.querySelector("#videoStream"));
         player.attachSource(url);
-    })();*/
+        setTimeout(function(){
+          document.querySelector("#videoStream").currentTime = 100
+          }, 1000)
+    })();
   div#videoInfo
     h1 Video Info
