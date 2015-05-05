@@ -20,7 +20,7 @@ block content
       (function(){
           var fileId = "#{videoInfo.fileId}" || '';
           console.log('fileid', fileId);
-          var url = "http://localhost:8080/uploads/"+fileId+"_dash.mpd"; //link to mpd
+          var url = "http://localhost:8080/uploads/"+fileId+"/_dash.mpd"; //link to mpd
           var context = new Dash.di.DashContext();
           player = new MediaPlayer(context);
           player.startup();
