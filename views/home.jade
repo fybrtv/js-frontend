@@ -12,7 +12,7 @@ block content
               li
                 a(href="/?ch=#{channel.channelName}")= channel.channelName
       div#right
-        video#videoStream
+        video#videoStream(controls="true", autoplay)
       div#comments
         p Comments
   - if (typeof(videoInfo) !== 'undefined'){
@@ -24,12 +24,15 @@ block content
           var context = new Dash.di.DashContext();
           player = new MediaPlayer(context);
           player.startup();
+          player.setAutoPlay(true);
           player.attachView(document.querySelector("#videoStream"));
+          player.setAutoPlay(true);
           player.attachSource(url);
           setTimeout(function(){
             player.seek(parseInt("#{videoInfo.start}"));
             console.log('videoInfo.start', "#{videoInfo.start}");
             player.play();
+            document.querySelector("#videoStream").play();
           }, 1000)
       
           
