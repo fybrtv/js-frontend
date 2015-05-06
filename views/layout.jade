@@ -6,15 +6,16 @@ html
     script(src="/javascripts/main.js")
     link(rel='stylesheet', href='/stylesheets/libs/bootstrap.min.css')
     link(href='http://fonts.googleapis.com/css?family=Open+Sans', rel='stylesheet',  type='text/css')
-    link(rel='stylesheet', href='/stylesheets/libs/font-awesome.min.css')
+    link(rel='stylesheet', href='/fonts/font-awesome.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    div#header
+    div#header(style="z-index:10000;")
       div#inner
         h1(onclick="window.location='/'", id="logo")= title
         if loggedIn == true
-          a.headerButton(href="/profileDashboard") #{firstName}
-          a.headerButton(href="/logout") Logout    
+          a.headerButton(href="/logout") <i class="fa fa-sign-out fa-2x"></i>
+          a.headerButton(href="/profileDashboard") <i class="fa fa-cog fa-2x"></i>
+          label.headerButton= firstName   
         else 
           a.headerButton(href="/login") Login
     div#wrapper
