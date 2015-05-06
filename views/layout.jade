@@ -6,12 +6,12 @@ html
     script(src="/javascripts/main.js")
     link(rel='stylesheet', href='/stylesheets/libs/bootstrap.min.css')
     link(href='http://fonts.googleapis.com/css?family=Open+Sans', rel='stylesheet',  type='text/css')
+    link(rel='stylesheet', href='/stylesheets/libs/font-awesome.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
     div#header
       div#inner
         h1(onclick="window.location='/'", id="logo")= title
-        label#subTitle= subTitle
         if loggedIn == true
           a.headerButton(href="/profileDashboard") #{firstName}
           a.headerButton(href="/logout") Logout    

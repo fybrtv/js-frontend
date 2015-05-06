@@ -1,10 +1,15 @@
 /*
-  Purple= #742365
+  Purple= #D11E48
+  Red = #D11E48
 */
 @font-face {
     font-family: acid;
     src: url(../fonts/acid.otf);
     font-weight: bold;
+}
+@font-face {
+    font-family: quiglet;
+    src: url(../fonts/quiglet.otf);
 }
 body {
   width: 100%;
@@ -12,9 +17,13 @@ body {
 }
 #header {
   width: 100%;
-  border-bottom: 1px solid #ccc;
-  padding: 1% 12.5%;
+  -webkit-box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.75);
+  padding: .75% 2%;
   position: relative;
+  height: 52px;
+  background-color: #D11E48;
 }
 #inner {
   min-width: 1012px;
@@ -48,7 +57,7 @@ body {
     
 }
 #left::-webkit-scrollbar-thumb {
-    background-color: #742365;
+    background-color: #D11E48;
 }
 #left::-webkit-scrollbar-thumb:hover {
     opacity: .5;
@@ -74,7 +83,7 @@ body {
 
 #left #channelTabs ul li:hover {
   cursor: pointer;
-  background-color: #742365;
+  background-color: #D11E48;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   -webkit-transition: all 0.1s ease-in-out;
@@ -99,15 +108,16 @@ body {
   width: 225px;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
-  border-top: 1px solid #742365;
-  border-bottom: 1px solid #742365;
-  border-right: 1px solid #742365;
+  border-top: 1px solid #D11E48;
+  border-bottom: 1px solid #D11E48;
+  border-right: 1px solid #D11E48;
 }
 
 h1 {
   font-size: 32px;
-  font-family: acid;
-  color: #742365;
+  font-family: quiglet;
+  color: white;
+  letter-spacing: 5px;
 }
 
 #logo:hover {
@@ -118,7 +128,7 @@ h1 {
   margin-left: 20px;
   position: absolute;
   margin-top: 10px;
-  color: #858585;
+  color: rgb(205,205,205);
   font-family: 'Open Sans';
   font-size: 14px
 }
@@ -134,7 +144,7 @@ h1 {
   float:left;
   width: 100%;
   background-color: #fff;
-  border-top: 1px solid #742365;
+  border-top: 1px solid #D11E48;
 }
 
 #videoStream {
@@ -152,14 +162,14 @@ a {
 a.headerButton {
   margin-top: 5px;
 	padding: 5px;
-	color: #742365;
+	color: white;
   text-decoration: none;
   float:right;
   margin-left: 10px;
 }
 
 a.headerButton:hover {
-	border-bottom: 2px solid #742365;
+	border-bottom: 2px solid #D11E48;
 	cursor: pointer;
   -webkit-transition: all 0.1s linear;
     -moz-transition: all 0.1s linear;
@@ -169,7 +179,7 @@ a.headerButton:hover {
 }
 
 a.formButton {
-  color: #742365;
+  color: #D11E48;
   text-decoration: none;
   padding: 5px;
 }
@@ -177,7 +187,7 @@ a.formButton {
 a.formButton:hover {
   color: #fff;
   cursor: pointer;
-  background-color: #742365;
+  background-color: #D11E48;
   -webkit-transition: all 0.1s ease-in-out;
     -moz-transition: all 0.4s linear;
     -ms-transition: all 0.4s linear;
@@ -204,38 +214,6 @@ a.formButton:hover {
 	border: 0px solid #fff;
 	border-bottom: 1px solid #ccc;
 }
-
-/*.fileUpload {
-	outline: none;
-	margin-left: 10px;
-
-}
-
-.fileUpload::-webkit-file-upload-button {
-  visibility: hidden;
-  content: "#fff";
-}
-
-.fileUpload::before {
-  content: 'Select some files';
-  display: inline-block;
-  background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
-  border: 1px solid #999;
-  border-radius: 3px;
-  padding: 5px 8px;
-  outline: none;
-  white-space: nowrap;
-  -webkit-user-select: none;
-  cursor: pointer;
-  text-shadow: 1px 1px #fff;
-  font-weight: 700;
-  font-size: 10pt;
-}
-
-.fileUpload:active::before {
-  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
-}
-*/
 
 #dropzone {
   margin-bottom: 10px;
@@ -267,7 +245,7 @@ a.formButton:hover {
 }
 
 #uploadButton:hover {
-  background-color: #742365;
+  background-color: #D11E48;
   color: #fff;
 }
 #uploadContainer {
