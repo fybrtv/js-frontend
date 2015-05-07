@@ -13,8 +13,8 @@ html
       div#inner
         h1(onclick="window.location='/'", id="logo")= title
         if loggedIn == true
-          a.headerButton(href="/logout") <i class="fa fa-sign-out fa-2x"></i>
-          a.headerButton(href="/profileDashboard") <i class="fa fa-cog fa-2x"></i>
+          a.headerButton(href="/logout") <i class="fa fa-sign-out fa-lg"></i>
+          a.headerButton(href="/profileDashboard") <i class="fa fa-cog fa-lg"></i>
           label.headerButton= firstName   
         else 
           a.headerButton(href="/login") Login
