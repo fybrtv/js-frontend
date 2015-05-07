@@ -305,27 +305,27 @@ a.formButton:hover {
 }
 .wrapper-dropdown-5 .dropdown {
   height: 200px;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   width: 100%;
   list-style-position: inside;
-    /* Size & position */
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
+  /* Size & position */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
 
-    /* Styles */
-    background: #666;
-    border-radius: 0 0 5px 5px;
-    border: 1px solid rgba(0,0,0,0.2);
-    border-top: none;
-    border-bottom: none;
-    list-style: none;
-    transition: all 0.3s ease-out;
+  /* Styles */
+  background: #666;
+  border-radius: 0 0 5px 5px;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-top: none;
+  border-bottom: none;
+  list-style: none;
+  transition: all 0.3s ease-out;
 
-    /* Hiding */
-    max-height: 0;
-    overflow: hidden;
+  /* Hiding */
+  max-height: 0;
 }
 
 .wrapper-dropdown-5 .dropdown::-webkit-scrollbar {
