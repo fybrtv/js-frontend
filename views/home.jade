@@ -41,8 +41,6 @@ block content
             player.mediaPlayer.seek(parseInt("#{videoInfo.start}"))
               console.log('videoInfo.start', "#{videoInfo.start}");
             }, 1500)
-          
-              
         })();
       })
   -}
@@ -58,7 +56,29 @@ block content
         
       });
   div#videoInfo
-    h2 Video Info
+    #left
+      h2 Series
+      #subContent
+        p.episodeName "Episode"&nbsp;
+          a.subTitle By Creator
+        p In this episode, Hemingway fights a conquistador and loses his ability to love.
+        br
+        #share(style="float:right;")
+          i(class="fa fa-twitter fa-lg")
+          i(class="fa fa-facebook fa-lg")
+          i(class="fa fa-google-plus fa-lg")
+    #right
+      h2 
+        i(class="fa fa-comments fa-2x") &nbsp;
+      #subContent
+        #commentForm
+          form
+            input#commentText(type="text", placeholder="Your Question Here...")
+            a#submitComment Ask
+        #comments No questions yet
+
+        
+
     #dd.wrapper-dropdown-5(tabindex="0") Comedy
       ul.dropdown
         for channel in channels
