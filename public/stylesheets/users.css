@@ -2,15 +2,44 @@
 body{
 background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url('../images/tv.jpg');
 }
-#loginForm, #createAccountForm{
+#loginForm, #createAccountForm, #editAccountForm, #newSeriesForm{
   width: 100%;
   max-width: 450px;
   margin: auto;
   margin-top: 5%;
   text-align: center;
 }
-#loginForm, #createAccountForm input[type="submit"]{
+#loginForm, #createAccountForm, #editAccountForm, #newSeriesForm input[type="submit"]{
   margin-top: 40px;
+}
+#wrapper a.sleekButton{
+  width: 100%;
+  max-width: 300px;
+  display: block;
+  border: 1px solid white;
+  color: white;
+  font-family: acid;
+  text-align: center;
+  margin: auto;
+  margin-top: 5%;
+  padding: 15px 15px 15px 15px;
+  font-size: 30px;
+  -webkit-transition: all 0.50s ease-in-out;
+  -moz-transition: all 0.50s ease-in-out;
+  -ms-transition: all 0.50s ease-in-out;
+  -o-transition: all 0.50s ease-in-out;
+  border-radius: 15px;
+  margin-bottom: 50px;
+}
+#wrapper a.sleekButton:hover{
+  background-color: white;
+  border: 1px solid #D11E48;
+  color: #D11E48;
+}
+#wrapper a.sleekButton.bad:hover{
+  background-color: #D11E48;
+  border: 1px solid #D11E48;
+  color: rgb(15,15,15);
 }
 p{
   color: white;
@@ -19,6 +48,11 @@ h2{
   color: white;
   font-family: acid;
   font-size: 90px;
+}
+h3{
+  color: white;
+  font-family: acid;
+  font-size: 45px;
 }
 input[type="text"], input[type="password"] {
   width: 100%;

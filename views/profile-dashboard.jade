@@ -2,54 +2,51 @@ extends layout
 
 block content
   link(rel='stylesheet', href="/stylesheets/users.css")
-  h1= subTitle
   if typeOfAccount == 1
-    .accountLeft(style="width:100%; float:left; padding:0; padding-left: 12.5%; margin-bottom: 45px;")
-      a(class="profileBtn", href="/upload") Upload
-      a(href="/resignCreator", class="profileBtn", id="resignCreatorLink") Resign as creator
-    .accountLeft(style="width: 100%; float:left; padding:0; padding-left: 12.5%; margin-bottom: 25px;")
-      h1 Create a new Series
-      form#newSeriesForm(action="/newSeries", method="post")
-        p= error
-        input(type="text", name="seriesName", id="episodeName", class="formText", placeholder="Series Name")
-        br
-        br
-        input(type="hidden", name="channelId", value="", id="channelId", class="seriesText")
-        select#newSeriesSelect
-          each channel in channels
-             option(value="#{channel._id}")= channel.channelName
-        br
-        br
-        input(type="submit", class="formButton", name="commit", id="editButton", value="Create new series")
-       
+    a(class="sleekButton", href="/upload") Upload
+    form#newSeriesForm(action="/newSeries", method="post")
+      h3 Create a new series
+      p= error
+      input(type="text", name="seriesName", id="episodeName", class="formText", placeholder="Series Name")
+      br
+      br
+      input(type="hidden", name="channelId", value="", id="channelId", class="seriesText")
+      select#newSeriesSelect
+        each channel in channels
+           option(value="#{channel._id}")= channel.channelName
+      br
+      br
+      input(type="submit", class="formButton", name="commit", id="editButton", value="Create new series")
   else
     #becomeCreatorContainer(style="width:100%; float:left; padding:0; padding-left: 12.5%;margin-bottom: 25px;")
       a.profileBtn(href="/becomeCreator", id="becomeCreatorLink") Become creator!
   
   form#editAccountForm(action="/profileDashboard", method="post")
-    h1 Edit User Account
+    h3 Edit User Account
     p= error
-    input(type="text", name="firstName", value="#{firstName}", class="create-form-text")
+    input(type="text", name="firstName", value="#{firstName}")
     br
     br
-    input(type="text", name="lastName", value="#{lastName}", class="create-form-text")
+    input(type="text", name="lastName", value="#{lastName}")
     br
     br
-    input(type="text", name="email", value="#{email}", class="create-form-text")
+    input(type="text", name="email", value="#{email}")
     br
     br
-    input(type="text", name="username", value="#{username}", class="create-form-text")
+    input(type="text", name="username", value="#{username}")
     br
     br
-    input(type="password", name="password", placeholder="Password", class="create-form-text")
+    input(type="password", name="password", placeholder="Password")
     br
     br
-    input(type="password", name="cpassword", placeholder="Confirm Password", class="create-form-text")
+    input(type="password", name="cpassword", placeholder="Confirm Password")
     br
     br
     input(type="submit", class="formButton", name="commit", id="editButton", value="Edit profile")
     br
     br
+  if typeOfAccount == 1
+    a(class="sleekButton bad", href="/resignCreator") Resign as creator
   script.
     $('#channelId').val($('#newSeriesSelect').val());
     $('#newSeriesSelect').change(function(){
