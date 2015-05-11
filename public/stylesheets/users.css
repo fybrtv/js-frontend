@@ -1,0 +1,74 @@
+
+body{
+background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url('../images/tv.jpg');
+}
+#loginForm, #createAccountForm{
+  width: 100%;
+  max-width: 450px;
+  margin: auto;
+  margin-top: 5%;
+  text-align: center;
+}
+#loginForm, #createAccountForm input[type="submit"]{
+  margin-top: 40px;
+}
+p{
+  color: white;
+}
+h2{
+  color: white;
+  font-family: acid;
+  font-size: 90px;
+}
+input[type="text"], input[type="password"] {
+  width: 100%;
+  height: 60px;
+  font-family: acid;
+  font-size: 25px;
+  text-align: left;
+  border-radius: 5px;
+  -webkit-transition: all 0.50s ease-in-out;
+  -moz-transition: all 0.50s ease-in-out;
+  -ms-transition: all 0.50s ease-in-out;
+  -o-transition: all 0.50s ease-in-out;
+  padding: 20px 20px 20px 20px;
+  margin: 5px 1px 3px 0px;
+  border: 1px solid #DDDDDD;
+}
+input[type="text"]:focus, input[type="password"]:focus{
+  -webkit-box-shadow: 0px 0px 26px 1px #D11E48;
+  -moz-box-shadow: 0px 0px 26px 1px #D11E48;
+  box-shadow: 0px 0px 26px 1px #D11E48;
+  margin: 5px 1px 3px 0px;
+  border: 1px solid #D11E48;
+  outline: none;
+}
+input[type="submit"]{
+  width: 100%;
+  background-color: #D11E48;
+  border: none;
+  color: white;
+  height: 60px;
+  font-size: 45px;
+  font-family: acid;
+  -webkit-transition: background-color 0.40s ease-in-out;
+  -moz-transition: background-color 0.40s ease-in-out;
+  -ms-transition: background-color 0.40s ease-in-out;
+  -o-transition: background-color 0.40s ease-in-out;
+  border-radius: 5px;
+}
+input[type="submit"]:hover{
+  background-color: #a41839;
+}
+a.input{
+  font-size: 35px;
+  font-family: acid;
+  -webkit-transition: all 0.30s ease-in-out;
+  -moz-transition: all 0.30s ease-in-out;
+  -ms-transition: all 0.30s ease-in-out;
+  -o-transition: all 0.30s ease-in-out;
+  padding-bottom: 45px;
+}
+a.input:hover{
+  text-decoration: none;
+}

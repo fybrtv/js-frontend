@@ -2,6 +2,7 @@ extends layout
 
 block content
   link(rel='stylesheet', href="/stylesheets/libs/jquery.fileupload.css")
+  link(rel='stylesheet', href="/stylesheets/users.css")
   script(src="/javascripts/libs/dropzone.js")
   form#uploadForm(class="dropzone", action="http://localhost:8080/upload", method="POST")
     p#message(style="display:none; margin-bottom: 10px;")
