@@ -2,54 +2,86 @@ extends layout
 
 block content
   link(rel='stylesheet', href="/stylesheets/users.css")
-  if typeOfAccount == 1
-    a.sleekButton(href="/upload") Upload
-    form#newSeriesForm(action="/newSeries", method="post")
-      h3 Create a new series
-      p= error
-      input(type="text", name="seriesName", id="episodeName", class="formText", placeholder="Series Name")
-      br
-      br
-      input(type="hidden", name="channelId", value="", id="channelId", class="seriesText")
-      div
-        select(class="cs-select cs-skin-border")
-          each channel in channels
-             option(value="#{channel._id}")= channel.channelName
-      br
-      br
-      input(type="submit", class="formButton", name="commit", id="editButton", value="Create new series")
-  else
-      a.sleekButton(href="/becomeCreator") Become creator!
-  form#editAccountForm(action="/profileDashboard", method="post")
-    h3 Edit User Account
-    p= error
-    input(type="text", name="firstName", value="#{firstName}")
-    br
-    br
-    input(type="text", name="lastName", value="#{lastName}")
-    br
-    br
-    input(type="text", name="email", value="#{email}")
-    br
-    br
-    input(type="text", name="username", value="#{username}")
-    br
-    br
-    input(type="password", name="password", placeholder="Password")
-    br
-    br
-    input(type="password", name="cpassword", placeholder="Confirm Password")
-    br
-    br
-    input(type="submit", class="formButton", name="commit", id="editButton", value="Edit profile")
-    br
-    br
-  if typeOfAccount == 1
-    a(class="sleekButton bad", href="/resignCreator") Resign as creator
+  #dashboard(style="padding: 2% 5%; width: 100%; ")
+    #left(style="width: 20%; overflow-y: none; height: auto")
+      ul#dashboardList
+        li#listTitle <i class="fa fa-cog fa-lg"></i> Settings
+        li
+          a#editProfileLink Edit Profile
+        if typeOfAccount == 1
+          li
+            a(href="/upload") Upload
+          li
+            a#createSeriesLink Create new series
+          li 
+            a(href="/resignCreator") Resign as Creator
+        else 
+          li 
+            a(href="/becomeCreator") Become Creator!
+        li 
+          a#favoritesLink Favorites
+        li 
+          a(href="/logout") Logout
+
+    #right(style="width: calc(80% - 20px); overflow-y: none; min-height: 0px; height: auto;")
+      #innerForm
+        if typeOfAccount == 1
+          form#newSeriesForm(action="/newSeries", method="post", style="display:none;")
+            #innerFormTitle
+              h2 
+                i(class="fa fa-plus-square fa-lg") &nbsp; 
+                label(style="font-weight: normal;") Create New Series
+            p= error
+            input(type="text", name="seriesName", id="episodeName", class="formText", placeholder="Series Name")
+            br
+            input(type="hidden", name="channelId", value="", id="channelId", class="seriesText")
+            div
+              select(class="cs-select cs-skin-border")
+                each channel in channels
+                   option(value="#{channel._id}")= channel.channelName
+            br
+            input(type="submit", class="formButton", name="commit", id="editButton", value="Create new series")
+          form#editAccountForm(action="/profileDashboard", method="post")
+
+            #innerFormTitle
+              h2 
+                i(class="fa fa-pencil-square-o fa-lg") &nbsp; 
+                label(style="font-weight: normal;") Edit Profile
+            p= error
+            input(type="text", name="firstName", value="#{firstName}")
+            br
+            input(type="text", name="lastName", value="#{lastName}")
+            br
+            input(type="text", name="email", value="#{email}")
+            br
+            input(type="text", name="username", value="#{username}")
+            br
+            input(type="password", name="password", placeholder="Password")
+            br
+            input(type="password", name="cpassword", placeholder="Confirm Password")
+            br
+            input(type="submit", class="formButton", name="commit", id="editButton", value="Edit profile")
+            br
   script.
     $('#channelId').val($('#newSeriesSelect').val());
     $('#newSeriesSelect').change(function(){
       $('#channelId').val($('#newSeriesSelect').val());
     })
+
+    $("#editProfileLink").show()
+    $("#editProfileLink").on("click", function(e){
+      $("#innerForm ").children().hide()
+      $("#editAccountForm").toggle()
+    })
+    $("#createSeriesLink").on("click", function(e){
+      
+      $("#innerForm ").children().hide()
+      $("#newSeriesForm").toggle()
+      $(".cs-options").width($($(".cs-select")[0]).width()-20+"px")
+    })
+    /*$("#favoritesLink").on("click", function(e){
+      $("#innerForm ").children().hide()
+      $("#favoritesView").toggle()
+    })*/
     console.log("edit profile form running")
   script(src="/javascripts/select.js")

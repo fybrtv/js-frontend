@@ -27,19 +27,22 @@ $.fn.topText = function() {
 
 $(function() {
 
-	var dd = new DropDown( $('#dd') );
+    if ($('#dd').length != 0) {
+        var dd = new DropDown( $('#dd') );
 
-	$(document).click(function() {
-		// all dropdowns
-		$('.wrapper-dropdown-1').removeClass('active');
-	});
-    $(document).ready(function(){
-        currentChannel = window.location.search.replace("?","").split("&")[0].split("=")[1] ||  "Comedy";
+        $(document).click(function() {
+            // all dropdowns
+            $('.wrapper-dropdown-1').removeClass('active');
+        });
+        $(document).ready(function(){
+            currentChannel = window.location.search.replace("?","").split("&")[0].split("=")[1] ||  "Comedy";
 
-        var dd = $('#dd').get(0);
-        var ctopText = dd.childNodes[0];
-        ctopText.nodeValue = currentChannel;
+            var dd = $('#dd').get(0);
+            var ctopText = dd.childNodes[0];
+            ctopText.nodeValue = currentChannel;
 
-        $("#videoStream").height($(window).innerHeight()-parseInt($("#header").css("height")))
-    });
+            $("#videoStream").height($(window).innerHeight()-parseInt($("#header").css("height")))
+        });
+    }
+    	
 });

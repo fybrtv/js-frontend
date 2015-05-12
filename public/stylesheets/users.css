@@ -1,19 +1,14 @@
 
 body{
-background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url('../images/tv.jpg');
+/*background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url('../images/tv.jpg');*/
+background-image: url(../images/light_honeycomb.png); background-repeat: repeat;
 }
 #loginForm, #createAccountForm, #editAccountForm, #newSeriesForm{
   width: 100%;
-  max-width: 450px;
-  margin: auto;
-  margin-top: 5%;
-  text-align: center;
 }
 #loginForm, #createAccountForm, #editAccountForm, #newSeriesForm input[type="submit"]{
-  margin-top: 40px;
 }
 #newSeriesForm{
-  margin-top: 100px;
 }
 #wrapper a.sleekButton{
   width: 100%;
@@ -44,21 +39,14 @@ background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url('
   border: 1px solid #D11E48;
   color: rgb(15,15,15);
 }
-p{
-  color: white;
-}
-h2{
-  color: white;
-  font-family: acid;
-  font-size: 90px;
-}
+
 h3{
   color: white;
   font-family: acid;
   font-size: 45px;
 }
 input[type="text"], input[type="password"] {
-  width: 100%;
+  width: calc(100% - 20px);
   height: 60px;
   font-family: acid;
   font-size: 25px;
@@ -73,15 +61,15 @@ input[type="text"], input[type="password"] {
   border: 1px solid #DDDDDD;
 }
 input[type="text"]:focus, input[type="password"]:focus{
-  -webkit-box-shadow: 0px 0px 26px 1px #D11E48;
-  -moz-box-shadow: 0px 0px 26px 1px #D11E48;
-  box-shadow: 0px 0px 26px 1px #D11E48;
+  -webkit-box-shadow: 0px 0px 5px 1px #D11E48;
+  -moz-box-shadow: 0px 0px 5px 1px #D11E48;
+  box-shadow: 0px 0px 5px 0.5px #D11E48;
   margin: 5px 1px 3px 0px;
   border: 1px solid #D11E48;
   outline: none;
 }
 input[type="submit"]{
-  width: 100%;
+  width: calc(100% - 20px);
   background-color: #D11E48;
   border: none;
   color: white;
@@ -111,11 +99,12 @@ a.input:hover{
 }
 /* Default custom select styles */
 div.cs-select {
-  display: inline-block;
+  font-size: 24px;
+  margin: 20px 0px 10px 10px;
   text-align: left;
   background: #fff;
   z-index: 100;
-  width: 100%;
+  width: calc(100% - 20px);
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -179,10 +168,9 @@ div.cs-active {
 
 /* Options */
 .cs-select .cs-options {
-  max-width: 450px;
-  width: 100%;
-  overflow: hidden;
+  overflow-y: auto;
   position: absolute;
+  width: inherit;
   background: #fff;
   visibility: hidden;
 }
@@ -196,8 +184,22 @@ div.cs-active {
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 200px;
-  overflow: auto;
+  height: 250px;
+  overflow-y: auto;
+}
+
+.cs-select ul::-webkit-scrollbar {
+    width: 8px;
+}
+.cs-select ul::-webkit-scrollbar-track {
+    background-color: transparent;
+    
+}
+.cs-select ul::-webkit-scrollbar-thumb {
+    background-color: #D11E48;
+}
+.cs-select ul::-webkit-scrollbar-thumb:hover {
+    opacity: .5;
 }
 
 .cs-select ul span {
@@ -230,9 +232,7 @@ div.cs-active {
 
 div.cs-skin-border {
   background: #fff;
-  font-size: 2em;
   font-weight: 700;
-  max-width: 600px;
 }
 
 @media screen and (max-width: 30em) {
@@ -240,7 +240,7 @@ div.cs-skin-border {
 }
 
 .cs-skin-border > span {
-  border: 5px solid #ddd9c9;
+  border: 2px solid #ddd9c9;
   border-color: #ddd9c9;
   color: #D11E48;
   -webkit-transition: background 0.2s, border-color 0.2s;
@@ -298,4 +298,52 @@ div.cs-skin-border {
   background: #f5f3ec;
 }
 
+#left, #right {
+  padding: 0;
+}
 
+#dashboard ul {
+  font-size: 18px;
+}
+
+#dashboard ul li {
+  padding: 10px 20px;
+  line-height: 30px;
+}
+
+#dashboard ul li a {
+  color: #D11E48;
+}
+
+#dashboard ul li a:hover {
+  opacity: .7;
+}
+
+#listTitle {
+  background-color: #eee;
+  border-bottom: 1px solid #ccc;
+}
+#innerForm {
+  padding: 0;
+}
+#innerFormTitle {
+  background-color: #eee;
+  border-bottom: 1px solid #ccc;
+  width: 100%;
+}
+#innerFormTitle h2 {
+  color: #444;
+  font-size: 18px;
+}
+#innerForm form > input {
+  margin: 10px;
+}
+h2 {
+  margin:0;
+  line-height: 30px;
+  padding: 10px 0 5px 20px;
+}
+h2 i {
+  margin:0;
+  padding:0;
+}
