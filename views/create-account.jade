@@ -1,6 +1,7 @@
 extends layout
 
 block content
+
   link(rel='stylesheet', href="/stylesheets/users.css")
   form#createAccountForm(action="/createAccount", method="post")
     h2= subTitle
@@ -29,3 +30,4 @@ block content
     a(class="input", id="loginButton" href="/login") Login
   script.
     console.log("create account form running")
+    $(document.body).css("background-image", "linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url('../images/tv.jpg')")

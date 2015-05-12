@@ -3,12 +3,16 @@ body{
 /*background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url('../images/tv.jpg');*/
 background-image: url(../images/light_honeycomb.png); background-repeat: repeat;
 }
-#loginForm, #createAccountForm, #editAccountForm, #newSeriesForm{
+ #editAccountForm, #newSeriesForm{
   width: 100%;
 }
 #loginForm, #createAccountForm, #editAccountForm, #newSeriesForm input[type="submit"]{
 }
-#newSeriesForm{
+
+#loginForm, #createAccountForm, #uploadForm {
+  width: 450px;
+  text-align: center;
+  margin: 100px auto;
 }
 #wrapper a.sleekButton{
   width: 100%;

@@ -16,13 +16,14 @@ block content
      
     br
     br
-    div#dropzone
+    div#dropzone(style="margin: 0 auto;")
     div#uploadContainer
       div
         div.dz-message(data-dz-message)
     input(class="formButton", type="button", id="uploadButton", value="Upload")
 
   script.
+    $(document.body).css("background-image", "linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url('../images/tv.jpg')")
     $("#seriesId").val($("#uploadSelect").find("option:selected").val())
 
     $("#uploadSelect").on("change", function(){
