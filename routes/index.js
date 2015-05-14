@@ -39,7 +39,10 @@ exports.homeGET = function(req, res) {
                     var data = JSON.parse(body1);
 
                     var renderData;
-
+                    var isCreatorCurrentlyAiring = false;
+                    if(data.creatorId === req.session.userId){
+                        isCreatorCurrentlyAiring = true;
+                    }
                     if (typeof data.fileId == "undefined") {
                         console.log("No timeline found")
                         renderData = {
@@ -49,7 +52,9 @@ exports.homeGET = function(req, res) {
                             firstName: req.session.firstName || undefined,
                             msg: "Could not find videos at this time. Try again later...",
                             channels: JSON.parse(body).document,
-                            loggedIn: loggedIn
+                            currentChannelId: currentChannelId,
+                            loggedIn: loggedIn,
+                            isCreator: isCreatorCurrentlyAiring
                         }
                     } else {
                         console.log("timeline found")
@@ -60,6 +65,7 @@ exports.homeGET = function(req, res) {
                             fileId: data.fileId,
                             start: data.start
                         };
+
                         renderData = {
                             title: _title,
                             subTitle: "home",
@@ -69,8 +75,11 @@ exports.homeGET = function(req, res) {
                             channels: JSON.parse(body).document,
                             loggedIn: loggedIn,
                             currentChannel: currentChannel,
-                            videoInfo: videoInfo
-                        }
+                            currentChannelId: currentChannelId,
+                            videoInfo: videoInfo,
+                            seriesId: data.seriesId,
+                            isCreator: isCreatorCurrentlyAiring
+                        };
                     }
 
                     console.log(renderData)

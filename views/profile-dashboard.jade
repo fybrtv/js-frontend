@@ -41,27 +41,27 @@ block content
                    option(value="#{channel._id}")= channel.channelName
             br
             input(type="submit", class="formButton", name="commit", id="editButton", value="Create new series")
-          form#editAccountForm(action="/profileDashboard", method="post")
+        form#editAccountForm(action="/profileDashboard", method="post")
 
-            #innerFormTitle
-              h2 
-                i(class="fa fa-pencil-square-o fa-lg") &nbsp; 
-                label(style="font-weight: normal;") Edit Profile
-            p= error
-            input(type="text", name="firstName", value="#{firstName}")
-            br
-            input(type="text", name="lastName", value="#{lastName}")
-            br
-            input(type="text", name="email", value="#{email}")
-            br
-            input(type="text", name="username", value="#{username}")
-            br
-            input(type="password", name="password", placeholder="Password")
-            br
-            input(type="password", name="cpassword", placeholder="Confirm Password")
-            br
-            input(type="submit", class="formButton", name="commit", id="editButton", value="Edit profile")
-            br
+          #innerFormTitle
+            h2 
+              i(class="fa fa-pencil-square-o fa-lg") &nbsp; 
+              label(style="font-weight: normal;") Edit Profile
+          p= error
+          input(type="text", name="firstName", value="#{firstName}")
+          br
+          input(type="text", name="lastName", value="#{lastName}")
+          br
+          input(type="text", name="email", value="#{email}")
+          br
+          input(type="text", name="username", value="#{username}")
+          br
+          input(type="password", name="password", placeholder="Password")
+          br
+          input(type="password", name="cpassword", placeholder="Confirm Password")
+          br
+          input(type="submit", class="formButton", name="commit", id="editButton", value="Edit profile")
+          br
   script.
     $('#channelId').val($('#newSeriesSelect').val());
     $('#newSeriesSelect').change(function(){
