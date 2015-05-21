@@ -273,6 +273,10 @@ a.formButton:hover {
 
 }
 
+#uploadForm {
+  text-align: center;
+  margin: 10px 50px;
+}
 #uploadForm ul {
 }
 
@@ -290,12 +294,16 @@ a.formButton:hover {
 }
 
 #dropzone {
-  margin-bottom: 10px;
+  font-size: 36px;
+  padding-top: 66px;
   margin-left: -10px;
-  background-size: 100% 100%;    
-  width: 400px;
-  height: 280px;
-  background: url(../images/dropzone.png) no-repeat;
+  width: calc(100% - 20px);
+  height: 200px;
+  border: 10px dotted #ccc;
+  /*background-image: url(../images/dropzone.png);
+  background-size:  cover;                      
+  background-repeat: no-repeat;
+  background-position: center center;*/
   font-weight: bold;
   opacity: .5;
 }
@@ -307,10 +315,11 @@ a.formButton:hover {
     -o-transition: all 0.5s ease-in-out;
     transition: all 0.5s ease-in-out;
     opacity: .9;
+    cursor: pointer;
 }
 
 #uploadButton {
-  margin: 20px 0px 0px 0px;
+  margin: 10px 0px 0px 0px;
   font-size: 16px;
   border-radius: 5px;
   background-color: #fff;
@@ -328,10 +337,10 @@ a.formButton:hover {
 
 .dz-file-preview, .dz-preview {
   display: inline-block;
-  max-width: 150px;
   max-height: 150px;
   border: 1px solid #ccc;
-  padding: 5px;
+  border-radius: 5px;
+  padding: 5px 10px;
 }
 
 #uploadThumb {
@@ -473,4 +482,280 @@ a.formButton:hover {
 .wrapper-dropdown-5.active .dropdown {
     border-bottom: 1px solid rgba(0,0,0,0.2);
     max-height: 400px;
+}
+
+#listTitleUpload {
+  background-color: #eee;
+  border-bottom: 1px solid #ccc;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+#uploadWrapper {
+  background-color: #fff;
+  width: 600px;
+  height: 100%;
+  border-radius: 5px;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+#uploadWrapper ul {
+  font-size: 18px;
+  padding: 0;
+}
+
+#uploadWrapper ul li {
+  padding: 10px 20px;
+  line-height: 30px;
+  list-style-type: none;
+}
+
+#uploadWrapper ul li a {
+  color: #D11E48;
+}
+
+#uploadWrapper ul li a:hover {
+  opacity: .7;
+}
+#uploadButton {
+  width: calc(100% - 20px);
+  background-color: #D11E48;
+  border: none;
+  color: white;
+  height: 60px;
+  font-size: 45px;
+  font-family: acid;
+  -webkit-transition: background-color 0.40s ease-in-out;
+  -moz-transition: background-color 0.40s ease-in-out;
+  -ms-transition: background-color 0.40s ease-in-out;
+  -o-transition: background-color 0.40s ease-in-out;
+  border-radius: 5px;
+}
+#uploadButton:hover{
+  background-color: #a41839;
+}
+input[type="text"], input[type="password"] {
+  width: calc(100% - 20px);
+  height: 60px;
+  font-family: acid;
+  font-size: 25px;
+  text-align: left;
+  border-radius: 5px;
+  -webkit-transition: all 0.50s ease-in-out;
+  -moz-transition: all 0.50s ease-in-out;
+  -ms-transition: all 0.50s ease-in-out;
+  -o-transition: all 0.50s ease-in-out;
+  padding: 20px 20px 20px 20px;
+  margin: 5px 1px 3px 0px;
+  border: 1px solid #DDDDDD;
+}
+input[type="text"]:focus, input[type="password"]:focus{
+  -webkit-box-shadow: 0px 0px 5px 1px #D11E48;
+  -moz-box-shadow: 0px 0px 5px 1px #D11E48;
+  box-shadow: 0px 0px 5px 0.5px #D11E48;
+  margin: 5px 1px 3px 0px;
+  border: 1px solid #D11E48;
+  outline: none;
+}
+
+/* Default custom select styles */
+div.cs-select {
+  font-size: 24px;
+  margin: 20px 0px 10px 10px;
+  text-align: left;
+  background: #fff;
+  z-index: 100;
+  width: calc(100% - 20px);
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+div.cs-select:focus {
+  outline: none; /* For better accessibility add a style for this in your skin */
+}
+
+.cs-select select {
+  display: none;
+}
+
+.cs-select span {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  padding: 1em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Placeholder and selected option */
+.cs-select > span {
+  padding-right: 3em;
+}
+
+.cs-select > span::after,
+.cs-select .cs-selected span::after {
+  speak: none;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.cs-select > span::after {
+  content: '\25BE';
+  right: 1em;
+}
+
+.cs-select .cs-selected span::after {
+  content: '\2713';
+  margin-left: 1em;
+}
+
+.cs-select.cs-active > span::after {
+  -webkit-transform: translateY(-50%) rotate(180deg);
+  transform: translateY(-50%) rotate(180deg);
+}
+
+div.cs-active {
+  z-index: 200;
+}
+
+/* Options */
+.cs-select .cs-options {
+  overflow-y: auto;
+  position: absolute;
+  width: inherit;
+  background: #fff;
+  visibility: hidden;
+}
+
+.cs-select.cs-active .cs-options {
+  visibility: visible;
+}
+
+.cs-select ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 250px;
+  overflow-y: auto;
+}
+
+.cs-select ul::-webkit-scrollbar {
+    width: 8px;
+}
+.cs-select ul::-webkit-scrollbar-track {
+    background-color: transparent;
+    
+}
+.cs-select ul::-webkit-scrollbar-thumb {
+    background-color: #D11E48;
+}
+.cs-select ul::-webkit-scrollbar-thumb:hover {
+    opacity: .5;
+}
+
+.cs-select ul span {
+  padding: 1em;
+}
+
+.cs-select ul li.cs-focus span {
+  background-color: #ddd;
+}
+
+/* Optgroup and optgroup label */
+.cs-select li.cs-optgroup ul {
+  padding-left: 1em;
+}
+
+.cs-select li.cs-optgroup > span {
+  cursor: default;
+}
+
+@font-face {
+  font-family: 'icomoon';
+  src:url('../fonts/icomoon/icomoon.eot?-rdnm34');
+  src:url('../fonts/icomoon/icomoon.eot?#iefix-rdnm34') format('embedded-opentype'),
+    url('../fonts/icomoon/icomoon.woff?-rdnm34') format('woff'),
+    url('../fonts/icomoon/icomoon.ttf?-rdnm34') format('truetype'),
+    url('../fonts/icomoon/icomoon.svg?-rdnm34#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+div.cs-skin-border {
+  background: #fff;
+  font-weight: 700;
+}
+
+@media screen and (max-width: 30em) {
+  div.cs-skin-border { font-size: 1em; }
+}
+
+.cs-skin-border > span {
+  border: 2px solid #ddd9c9;
+  border-color: #ddd9c9;
+  color: #D11E48;
+  -webkit-transition: background 0.2s, border-color 0.2s;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.cs-skin-border > span::after,
+.cs-skin-border .cs-selected span::after {
+  font-family: 'icomoon';
+  content: '\e000';
+}
+
+.cs-skin-border ul span::after {
+  content: '';
+  opacity: 0;
+}
+
+.cs-skin-border .cs-selected span::after {
+  content: '\e00e';
+  color: #ddd9c9;
+  font-size: 1.5em;
+  opacity: 1;
+  -webkit-transition: opacity 0.2s;
+  transition: opacity 0.2s;
+}
+
+.cs-skin-border.cs-active > span {
+  background: #fff;
+  border-color: #fff;
+  color: #D11E48;
+}
+
+.cs-skin-border .cs-options {
+  color: #D11E48;
+  font-size: 25px;
+  opacity: 0;
+  -webkit-transition: opacity 0.2s, visibility 0s 0.2s;
+  transition: opacity 0.2s, visibility 0s 0.2s;
+}
+
+.cs-skin-border.cs-active .cs-options {
+  opacity: 1;
+  -webkit-transition: opacity 0.2s;
+  transition: opacity 0.2s;
+}
+
+.cs-skin-border ul span {
+  padding: 1em 2em;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.cs-skin-border .cs-options li span:hover,
+.cs-skin-border li.cs-focus span {
+  background: #f5f3ec;
 }

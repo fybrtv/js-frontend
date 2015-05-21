@@ -2,73 +2,81 @@ extends layout
 
 block content
   link(rel='stylesheet', href="/stylesheets/libs/jquery.fileupload.css")
-  link(rel='stylesheet', href="/stylesheets/users.css")
   script(src="/javascripts/libs/dropzone.js")
-  form#uploadForm(class="dropzone", action="http://localhost:8080/upload", method="POST")
-    p#message(style="display:none; margin-bottom: 10px;")
-    input(type="text", required="true", name="episodeName", id="episodeName", placeholder="episode title", class="formText")
-    br
-    br
-    input(type="hidden", name="seriesId", value="", id="seriesId", class="formText")
-    select#uploadSelect
-      each series in userSeries
-         option(value="#{series._id}")= series.title
-     
-    br
-    br
-    div#dropzone(style="margin: 0 auto;")
-    div#uploadContainer
-      div
-        div.dz-message(data-dz-message)
-    input(class="formButton", type="button", id="uploadButton", value="Upload")
+  #uploadWrapper
+    ul
+      li#listTitleUpload <i class="fa fa-cloud-upload fa-lg"></i> Upload
+      li
+        form#uploadForm(class="dropzone", action="http://localhost:8080/upload", method="POST")
+          p#message(style="display:none; margin-bottom: 10px;")
+          input(type="text", required="true", name="episodeName", id="episodeName", placeholder="episode title", class="formText")
+          br
+          input(type="hidden", name="seriesId", value="", id="seriesId", class="formText")
+          div
+            select(class="cs-select cs-skin-border")
+              each series in userSeries
+                option(value="#{series._id}")= series.title
+          div#dropzone(style="margin: 0px auto; margin-top: 20px; margin-bottom: 10px;") drop video here
+          div#uploadContainer()
+            div
+              div.dz-message(data-dz-message)
+          input(class="formButton", type="button", id="uploadButton", value="Upload")
 
-  script.
-    $(document.body).css("background-image", "linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url('../images/tv.jpg')")
-    $("#seriesId").val($("#uploadSelect").find("option:selected").val())
+    script.
 
-    $("#uploadSelect").on("change", function(){
-      var optionSelected = $(this).find("option:selected");
-      var valueSelected  = optionSelected.val();
-      $("#seriesId").val(valueSelected);
-    });
-    var myDropzone = new Dropzone("div#dropzone", { 
-      url: "http://localhost:8080/upload",
-      autoProcessQueue: false,
-      maxFilesize: 2048,
-      previewsContainer: "div#uploadContainer",
-      previewTemplate: "<div class=\"dz-preview dz-file-preview\"><div class=\"dz-details\"><div class=\"dz-filename\"><span data-dz-name></span></div><div class=\"dz-size\" data-dz-size></div><img data-dz-thumbnail class=\"uploadThumb\" />",
-      accept: function(file, done) {
-        console.log("Got file "+file.name); done();
-      },
-      sending: function(file, xhr, formData) {
-          console.log($("#seriesId").val())
-          formData.append("seriesId", $("#seriesId").val());
-          formData.append("episodeName", $("#episodeName").val());
-      },
-      init: function() {
-        function message(m) {
-          $("#message").show()
-          $("#message").text(m)
+      $(document.body).css("background-image", "linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url('../images/tv.jpg')")
+      $("#seriesId").val($("#uploadSelect").find("option:selected").val())
+
+      $("#uploadSelect").on("change", function(){
+        var optionSelected = $(this).find("option:selected");
+        var valueSelected  = optionSelected.val();
+        $("#seriesId").val(valueSelected);
+      });
+      var myDropzone = new Dropzone("div#dropzone", { 
+        url: "http://localhost:8080/upload",
+        autoProcessQueue: false,
+        maxFilesize: 2048,
+        previewsContainer: "div#uploadContainer",
+        previewTemplate: "<div class=\"dz-preview dz-file-preview\"><div class=\"dz-details\"><div class=\"dz-filename\"><span data-dz-name></span></div><div class=\"dz-size\" data-dz-size></div><img data-dz-thumbnail class=\"uploadThumb\" />",
+        accept: function(file, done) {
+          console.log("Got file "+file.name); done();
+        },
+        sending: function(file, xhr, formData) {
+            console.log($("#seriesId").val())
+            formData.append("seriesId", $("#seriesId").val());
+            formData.append("episodeName", $("#episodeName").val());
+        },
+        init: function() {
+          function message(m) {
+            $("#message").show()
+            $("#message").text(m)
+          }
+          var submitBtn = document.querySelector("#uploadButton");
+
+          d = this;
+          submitBtn.addEventListener("click", function(){
+            $("#message").text("");
+            if ($("#seriesId").val() == null || $("#episodeName").val() == "") {
+              message("Please enter in both the episode name and series name")
+            } else if (d.getQueuedFiles().length < 1) {
+              message("Please upload at least (1) file")
+            } else {
+            console.log('d',d);
+              d.processQueue(); 
+              //window.location.replace(window.location.origin+"/")
+            }  
+          });
+            
+
+          this.on("addedfile", function() {
+            console.log('file added');
+          })
         }
-        var submitBtn = document.querySelector("#uploadButton");
-
-        d = this;
-        submitBtn.addEventListener("click", function(){
-          $("#message").text("");
-          if ($("#seriesId").val() == null || $("#episodeName").val() == "") {
-            message("Please enter in both the episode name and series name")
-          } else if (d.getQueuedFiles().length < 1) {
-            message("Please upload at least (1) file")
-          } else {
-          console.log('d',d);
-            d.processQueue(); 
-            //window.location.replace(window.location.origin+"/")
-          }  
-        });
-          
-
-        this.on("addedfile", function() {
-          console.log('file added');
-        })
-      }
-    });
+      });
+      $(document).ready(function(){
+        $(".cs-options").width($($(".cs-select")[0]).width()+"px")
+        $(".cs-options").css("z-index", "100")
+        $(".cs-options").css("margin-bottom", "10px")
+        $("div.cs-select").css("font-size", "inherit")
+      })
+  script(src="/javascripts/select.js")
