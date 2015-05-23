@@ -12,10 +12,15 @@ block content
           input(type="text", required="true", name="episodeName", id="episodeName", placeholder="episode title", class="formText")
           br
           input(type="hidden", name="seriesId", value="", id="seriesId", class="formText")
-          div
-            select(class="cs-select cs-skin-border")
-              each series in userSeries
-                option(value="#{series._id}")= series.title
+          if userSeries.length != 0
+            div
+              select(class="cs-select cs-skin-border")
+                each series in userSeries
+                  option(value="#{series._id}")= series.title
+          else
+            h3 No series available
+            br
+            a(href="/profileDashboard") Create one!
           div#dropzone(style="margin: 0px auto; margin-top: 20px; margin-bottom: 10px;") drop video here
           div#uploadContainer()
             div
