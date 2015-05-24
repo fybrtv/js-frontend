@@ -40,9 +40,14 @@ exports.homeGET = function(req, res) {
 
                     var renderData;
                     var isCreatorCurrentlyAiring = false;
-                    if(data.creatorId === req.session.userId){
-                        isCreatorCurrentlyAiring = true;
+                    console.log(data.creatorId);
+                    console.log(req.session.userId);
+                    if(req.session.userID != null){
+                        if("55384fb4ea581428886e7700" == req.session.userID){
+                            isCreatorCurrentlyAiring = true;
+                        }
                     }
+                    console.log(isCreatorCurrentlyAiring);
                     if (typeof data.fileId == "undefined") {
                         console.log("No timeline found")
                         renderData = {
@@ -51,11 +56,12 @@ exports.homeGET = function(req, res) {
                             seriesId: 1345,
                             type: req.session.type || undefined,
                             firstName: req.session.firstName || undefined,
-                            userId: 3,
+                            creatorId: "55384fb4ea581428886e7700",
                             msg: "Could not find videos at this time. Try again later...",
                             channels: JSON.parse(body).document,
                             currentChannelId: currentChannelId,
                             loggedIn: loggedIn,
+                            userId: req.session.userID,
                             isCreator: isCreatorCurrentlyAiring
                         }
                     } else {

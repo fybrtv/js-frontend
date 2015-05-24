@@ -20,34 +20,6 @@ block content
       //- div#right
       //- div#comments
       //-   p Comments
-  - if (isCreator){
-    script.
-      var socket = io('http://127.0.0.1:6060/ama/');
-      socket.emit('creatorInit', "#{userId}")
-      socket.on('connection', function(socket){
-        socket.on('newQuestion', function(msg){
-          console.log('message: ' + msg);
-        });
-      });
-  -}
-  - else{
-    script.
-      var socket = io('http://127.0.0.1:6060/ama/');
-      socket.emit('init', "#{seriesId}")
-      $('form').submit(function(){
-        socket.emit('question', $('#commentText').val());
-          $('#m').val('');
-        return false;
-      });
-      socket.on('connection', function(socket){
-        socket.on('newQuestion', function(msg){
-          console.log('message: ' + msg);
-        });
-        socket.on('answer', function(msg){
-          $('#messages').append($('<li>').text(msg));
-        });
-      });
-  -}
   - if (typeof(videoInfo) !== 'undefined'){
     script.
 
@@ -119,4 +91,26 @@ block content
           li
             a(href="/?ch=#{channel.channelName}") 
               i.icon-user= channel.channelName
+  - if (isCreator){
+    script.
+      var socket = io('http://127.0.0.1:6060/ama/');
+      socket.emit('creatorInit', "#{creatorId}")
+      socket.on('newQuestion', function(msg){
+        console.log('message: ' + msg);
+      });
+  -}
+  - else{
+    script.
+      var socket = io('http://127.0.0.1:6060/ama/');
+      socket.emit('init', "#{seriesId}")
+      $('#submitComment').click(function(){
+        console.log('clicked');
+        socket.emit('question', {question: $('#commentText').val(), creatorId: "#{creatorId}", askerId: "#{userId}", seriesId: "#{seriesId}"}, function(err){
+            console.log(err);
+        });
+      });
+      socket.on('answer', function(msg){
+        $('#messages').append($('<li>').text(msg));
+      });
+  -}
          
