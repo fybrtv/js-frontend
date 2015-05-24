@@ -48,8 +48,10 @@ exports.homeGET = function(req, res) {
                         renderData = {
                             title: _title,
                             subTitle: "home",
+                            seriesId: 1345,
                             type: req.session.type || undefined,
                             firstName: req.session.firstName || undefined,
+                            userId: 3,
                             msg: "Could not find videos at this time. Try again later...",
                             channels: JSON.parse(body).document,
                             currentChannelId: currentChannelId,
