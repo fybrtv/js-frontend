@@ -31,7 +31,6 @@ body {
 }
 #inner > *{
   display: inline;
-
 }
 #wrapper > * {
   padding: 0 0;
@@ -43,18 +42,17 @@ body {
   height:  100%;
 }
 #left, #right {
-  padding: 5px 10px;
+  padding: 0px 10px;
   background-color: #fff;
   border-radius: 4px;
   border: 1px solid #ccc;
 }
 #left {
-  height: 200px;
+  min-height: 200px;
   float:left;
   overflow-y: auto;
   width: 40%;
 }
-
 #left::-webkit-scrollbar {
     width: 8px;
 }
@@ -104,11 +102,11 @@ body {
 }
 
 #right {
-  margin-left: 20px;
+  margin-left: 10px;
   min-height: 400px;
   float:left;
   min-width: 200px;
-  width: calc(60% - 20px);
+  width: calc(60% - 10px);
 }
 
 #comments {
@@ -144,7 +142,7 @@ body {
   color: #fff;
   font-size: 25px;
   font-family: acid;
-  padding: 10px;
+  padding: 15px 10px;
   -webkit-transition: background-color 0.40s ease-in-out;
   -moz-transition: background-color 0.40s ease-in-out;
   -ms-transition: background-color 0.40s ease-in-out;
