@@ -92,16 +92,13 @@ block content
     script.
       var socket = io('http://127.0.0.1:6060/ama/');
       socket.emit('creatorInit', "#{creatorId}")
-      socket.on('newQuestion', function(msg){
-        console.log(msg);
+      socket.on('newQuestion', function(data){
         $("#questionsBox > p").text("");
-
         var questionDiv = $("<div class='question'>");
-        questionDiv.append("<p class='questionText'>"+msg+"</p>");
+        questionDiv.append("<p class='questionText' data="+data.questionId+">"+data.question+"</p>");
         $("#questionsBox").append(questionDiv);
         setQuestionEvent(questionDiv);
       });
-
       function setQuestionEvent(e) {
         e.on("click", function(e) {
           if ($(this).next().attr("id") == "activeQuestion")
@@ -124,7 +121,15 @@ block content
             div.append(a);
             div.insertAfter($(this))
           }
-          
+          $('#answerQuestion').click(function(){
+            console.log('click called');
+            var question = $(this).parent().prev().find('.questionText').text();
+            var questionId = $(this).parent().prev().find('.questionText').attr("data");
+            var answer = $(this).prev().val();
+            socket.emit('answer', {question: question, seriesId: "#{seriesId}", answer: answer, questionId: questionId}, function(err){
+                console.log(err);
+            });
+          });
         });
       }
       setQuestionEvent($(".question"))
