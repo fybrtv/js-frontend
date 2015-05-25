@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+  <title>fybr</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/stylesheets/libs/bootstrap.css">
+  <link rel='stylesheet' href='/fonts/font-awesome.min.css'>
+  <link rel="stylesheet" href="/stylesheets/cover.css">
+  <script src="https://cdn.firebase.com/js/client/2.2.5/firebase.js"></script>
+</head>
+<body>
+  <div class="site-wrapper">
+
+    <div class="site-wrapper-inner">
+
+      <div class="cover-container">
+
+        <div class="masthead clearfix">
+          <div class="inner">
+            <!--<h3 class="masthead-brand">Hello</h3>-->
+          </div>
+        </div>
+
+        <div class="inner cover">
+          <h1 class="cover-heading">fybr</h1>
+          <p class="lead slogan">Rediscover Video Streaming</p>
+          <p class="lead error"></p>
+          <p class="lead">
+            <div class="input-group invite">
+              <input type="text" class="form-control" style="font-size: 21px;" placeholder="your email">
+              <span class="input-group-addon invite">
+                <i class="fa fa-check fa-lg" style="font-size: 21px;"></i>
+              </span>
+            </div><!-- /input-group -->
+          </p>
+        </div>
+
+        <div class="mastfoot">
+          <div class="inner">
+            <p>Fybr Media LLC, by <a href="https://twitter.com/jawerty">@jawerty</a> and <a href="https://twitter.com/carterh062">@carterh062</a>.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <script>
+
+  //firebase stuff
+  var FB = function() {
+    this.ref = new Firebase("https://incandescent-torch-2669.firebaseio.com/");
+
+    this.run = function(email) {
+      this.ref.push({email: email});
+      this.ref.on("child_added", function(ss) {
+        $(".lead.error").text("Thank you for your interest in fybr! We will contact you soon.");
+      });
+    }
+  }
+
+  fb = new FB();
+  //main function
+  $(document).ready(function(){
+    $(".input-group.invite input").on("focus", function() {
+      $(".lead.error").text("")
+    })
+    $(".input-group-addon.invite").on("click", function(e){
+      var textbox = $($(this).parent().find("input")[0]);
+      var email = textbox.val();
+      if (email == "") {
+        $(".lead.error").text("Please type in an email!")
+      } else {
+
+        if (typeof email.split("@")[1] != "undefined" && email.split("@")[1].split(".").length == 2 && email.split("@")[1].split(".")[1].length > 1) {
+          fb.run(email)
+        } else {
+          console.log("bad email")
+        }
+        
+      }
+      
+    });
+  })
+  </script>
+</body>
+</html>

@@ -22,7 +22,6 @@ block content
       //-   p Comments
   - if (typeof(videoInfo) !== 'undefined'){
     script.
-
       $(document).ready(function(){
         (function(){
           var fileId = "#{videoInfo.fileId}" || '';
@@ -74,14 +73,12 @@ block content
       #subContent
         #commentForm
           if isCreator
-            div#questionsBox
-              h2#questionText Some question
-              a#answerQuestion Answer
+            div#questionsBox 
+              p no questions yet
           else
             form
               input#commentText(type="text", placeholder="Your Question Here...")
               a#submitComment Ask
-        #comments No answer yet
 
         
 
@@ -96,8 +93,42 @@ block content
       var socket = io('http://127.0.0.1:6060/ama/');
       socket.emit('creatorInit', "#{creatorId}")
       socket.on('newQuestion', function(msg){
-        console.log('message: ' + msg);
+        console.log(msg);
+        $("#questionsBox > p").text("");
+
+        var questionDiv = $("<div class='question'>");
+        questionDiv.append("<p class='questionText'>"+msg+"</p>");
+        $("#questionsBox").append(questionDiv);
+        setQuestionEvent(questionDiv);
       });
+
+      function setQuestionEvent(e) {
+        e.on("click", function(e) {
+          if ($(this).next().attr("id") == "activeQuestion")
+            $("#activeQuestion").remove();
+          else {
+            $("#activeQuestion").remove();
+            
+            var div = $("<div id='activeQuestion'>");
+            var input = $("<input>");
+            var a = $("<a>");
+
+            input.attr("type", "text");
+            input.attr("placeholder", "your answer");
+            input.attr("id", "commentText");
+
+            a.attr("id", "answerQuestion");
+            a.text("answer")
+
+            div.append(input);
+            div.append(a);
+            div.insertAfter($(this))
+          }
+          
+        });
+      }
+      setQuestionEvent($(".question"))
+      
   -}
   - else{
     script.

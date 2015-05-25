@@ -449,7 +449,7 @@ easily in the skin designer. http://designer.videojs.com/
   /* Center it horizontally */
   left: 50%;
   margin-left: -1.55em;
-  top: 2em;
+  top: 40%;
   font-size: 3em;
   display: block;
   z-index: 2;
@@ -464,7 +464,7 @@ easily in the skin designer. http://designer.videojs.com/
   /* background-color-with-alpha */
   background-color: #07141e;
   background-color: rgba(7, 20, 30, 0.7);
-  border: 0.05em solid rgba(200, 200, 200, 0.25);
+  border: 0.03em solid rgba(200, 200, 200, 0.25);
   /* border-radius */
   -webkit-border-radius: 0.4em;
   -moz-border-radius: 0.4em;
